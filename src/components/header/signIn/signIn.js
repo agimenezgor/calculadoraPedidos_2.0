@@ -1,10 +1,9 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function SignIn() {
     return (
-      <div>
-        sign in
-      </div>
+      <Button variant="outline-info" size="lg">Mi cuenta</Button>
     );
   }
   

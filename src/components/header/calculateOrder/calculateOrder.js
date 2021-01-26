@@ -1,10 +1,9 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function CalculateOrder() {
     return (
-      <div>
-        Calculate Order
-      </div>
+      <Button variant="outline-info" size="lg">Calcular pedido</Button>
     );
   }
   

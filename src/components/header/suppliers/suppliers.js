@@ -1,9 +1,10 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function Suppliers() {
     return (
       <div>
-        suppliers
+        <Button variant="outline-info" size="lg">Proveedores</Button>
       </div>
     );
   }

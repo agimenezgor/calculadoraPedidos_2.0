@@ -1,9 +1,10 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function PageTitle() {
     return (
       <div>
-        page title
+        <Button variant="outline-info"><h1>Calculadora de pedidos</h1></Button>
       </div>
     );
   }

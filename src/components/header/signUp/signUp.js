@@ -1,10 +1,9 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function SignUp() {
     return (
-      <div>
-        sign up
-      </div>
+      <Button variant="outline-info" size="lg" className="mr-4">Regístrate</Button>
     );
   }
   
