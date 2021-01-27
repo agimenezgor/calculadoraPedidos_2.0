@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import { useForm } from "react-hook-form";
-import { useState } from 'react';
 import { Redirect } from "react-router-dom";
 import PrintValidatedMessage from "./printValidatedMessage";
 import ValidateData from "./validateData";

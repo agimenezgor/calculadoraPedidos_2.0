@@ -5,7 +5,7 @@ function ValidateData (setValidatedMessage) {
     })
     const us = await data.json()
     setValidatedMessage(us.message); */
-    setValidatedMessage("Sesión iniciada correctamente");
+    setValidatedMessage("Usuario registrado correctamente");
     /* if(us.message === "Sesión iniciada correctamente"){
         //props.setUser(us.user);
         //console.log(us.user)
