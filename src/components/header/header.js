@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import SignUp from './signUp/signUp';
 import SignIn from './signIn/signIn';
 import PageTitle from './pageTitle/pageTitle';
@@ -12,18 +12,11 @@ import { Dropdown} from 'react-bootstrap';
 
 function Header(props) {
     const cookies = new Cookies();
-    //const [initialized, setInitialized] = useState(props.user);
-    console.log(props.user)
-    /* if(props.user !== ''){
-      setInitialized(true);
-    } */
-    
+
     function signOff(){
       cookies.remove('name', {path: '/'});
       cookies.remove('token', {path: '/'});
       props.setUser("")
-      console.log(props.user)
-      //setInitialized('');
     }
 
     return (

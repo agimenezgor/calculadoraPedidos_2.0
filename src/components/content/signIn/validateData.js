@@ -13,7 +13,6 @@ async function fetchDataLogin(data) {
 
 async function ValidateData (setUser, setInitialized, setValidatedMessage, data, e) {  
     const user = await fetchDataLogin(data);
-    console.log(user);
     setValidatedMessage(user.message);
     if(user.message === "Sesión iniciada correctamente"){
       // SetCockies
