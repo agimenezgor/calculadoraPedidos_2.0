@@ -11,7 +11,8 @@ function SignIn(props) {
   const [initialized, setInitialized] = useState(false);
 
   async function onSubmit (data, e) {
-    await ValidateData(setInitialized, setValidatedMessage, data, e);
+    const setUser = props.setUser;
+    await ValidateData(setUser, setInitialized, setValidatedMessage, data, e);
   }
   return (
     <div className="container text-info pt-5 d-flex justify-content-center">

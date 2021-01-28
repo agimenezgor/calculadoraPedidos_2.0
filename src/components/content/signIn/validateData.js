@@ -11,7 +11,7 @@ async function fetchDataLogin(data) {
   return fetchResponse;
 }
 
-async function ValidateData (setInitialized, setValidatedMessage, data, e) {  
+async function ValidateData (setUser, setInitialized, setValidatedMessage, data, e) {  
     const user = await fetchDataLogin(data);
     console.log(user);
     setValidatedMessage(user.message);
@@ -20,7 +20,7 @@ async function ValidateData (setInitialized, setValidatedMessage, data, e) {
       const cookies = new Cookies();
       cookies.set('name', user.user.name, {path: '/'});
       cookies.set('token', user.token, {path: '/'});
-
+      setUser(user.user.name);
       // Redirect
       setTimeout(() => {
         e.target.reset(); 

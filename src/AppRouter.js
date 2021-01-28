@@ -12,7 +12,7 @@ import NewReference from './components/content/modifyData/newReference/newRefere
 import RemoveSupplier from './components/content/modifyData/removeSupplier/removeSupplier';
 import RemoveReference from './components/content/modifyData/removeReference/removeReference';
 
-function AppRouter(){
+function AppRouter(props){
     return (
         <Switch>
                 <Route exact path="/"><Content/></Route>
@@ -29,7 +29,7 @@ function AppRouter(){
                 <Route path="/proveedores"><Suppliers/></Route>
                 
                 <Route path="/registro"><SignUp/></Route>
-                <Route path="/inicio_sesion"><SignIn/></Route>  
+                <Route path="/inicio_sesion"><SignIn setUser = {props.setUser}/></Route>  
             </Switch>
     );
   }
