@@ -10,13 +10,8 @@ function SignUp() {
   const [validatedMessage, setValidatedMessage] = useState("");
   const [initialized, setInitialized] = useState(false);
   
-  const onSubmit = (data, e) => {
-    ValidateData(setValidatedMessage);
-    setTimeout(() => {
-      e.target.reset(); 
-      setValidatedMessage("");
-      setInitialized(true);
-      }, 2000);
+  async function onSubmit (data, e) {
+    await ValidateData(setValidatedMessage, data, e, setInitialized);
   }
   return (
     <div className="container text-info pt-5 d-flex justify-content-center">
