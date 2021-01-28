@@ -1,7 +1,15 @@
 async function fetchDataLogin(data) {
+  // capitalize first letter
+  const test = data.name
+  const username = test.toLowerCase()
+                        .trim()
+                        .split(' ')
+                        .map( v => v[0].toUpperCase() + v.substr(1) )
+                        .join(' '); 
+  // Fetch                     
   const fetchResponse = await fetch('http://localhost:3001/users/register', {
       method: 'POST',
-      body: JSON.stringify({name: data.name, email: data.email, password: data.password }),
+      body: JSON.stringify({name: username, email: data.email, password: data.password }),
       headers:{ 'Content-Type': 'application/json' },
     })
     .then(response => response.json())
