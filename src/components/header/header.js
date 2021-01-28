@@ -7,8 +7,16 @@ import CalculateOrder from './calculateOrder/calculateOrder';
 import NewSupplier from './newSupplier/newSupplier';
 import Suppliers from './suppliers/suppliers';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 function Header() {
+    const cookies = new Cookies();
+    let userInitialized = false;
+
+    if(cookies.get('name') !== undefined){
+      userInitialized = true;
+    }
+
     return (
       <div className="app-header container-fluid">
           <div className="m-0 row d-flex align-items-center w-100">
@@ -22,11 +30,14 @@ function Header() {
               <Link to="/proveedores"><Suppliers/></Link>
             </div>
 
-            <div className="col-md-3 d-flex justify-content-end">
-              <Link to="/registro"><SignUp/></Link>
-              <Link to="/inicio_sesion"><SignIn/></Link>
-            </div>  
-            
+            {userInitialized === true ? (
+              <h3 className="col-md-3 d-flex d-flex justify-content-center text-info">Bienvenido {cookies.get('name')}!</h3>
+            ): (
+                <div className="col-md-3 d-flex justify-content-end">
+                  <Link to="/registro"><SignUp/></Link>
+                  <Link to="/inicio_sesion"><SignIn/></Link>
+                </div>  
+            )} 
           </div>
         </div>
     );

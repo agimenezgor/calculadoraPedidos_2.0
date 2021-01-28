@@ -8,7 +8,6 @@ function CalculateOrder() {
     if(cookies.get('name') !== undefined){
       userInitialized = true;
     }
-    console.log(userInitialized)
     return (
       <div>
         {userInitialized === true ? (
