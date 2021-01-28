@@ -1,15 +1,23 @@
-function ValidateData (setValidatedMessage) {
-    /* const data = await fetch('http://localhost:3001/users/login', {
-      method: 'post',
-      body: JSON.stringify({email: payload.email, password: payload.password})
+async function fetchDataLogin(data) {
+  const fetchResponse = await fetch('http://localhost:3001/users/login', {
+      method: 'POST',
+      body: JSON.stringify({ email: data.email, password: data.password }),
+      headers:{ 'Content-Type': 'application/json' },
     })
-    const us = await data.json()
-    setValidatedMessage(us.message); */
-    setValidatedMessage("Sesión iniciada correctamente");
-    /* if(us.message === "Sesión iniciada correctamente"){
-        //props.setUser(us.user);
-        //console.log(us.user)
-        
-    } */
+    .then(response => response.json())
+    .then(response => {return response;})
+  return fetchResponse;
+}
+
+async function ValidateData (setInitialized, setValidatedMessage, data, e) {  
+    const user = await fetchDataLogin(data);
+    setValidatedMessage(user.message);
+    if(user.message === "Sesión iniciada correctamente"){
+      setTimeout(() => {
+        e.target.reset(); 
+        setValidatedMessage("");
+        setInitialized(true);
+        }, 2000);
+    }
   }
   export default ValidateData;

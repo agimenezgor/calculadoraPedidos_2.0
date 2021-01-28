@@ -13,7 +13,7 @@ function Typed (){
 
         <div>
           <h2 className="text-light d-flex justify-content-center align-items-center" style={{minHeight:"30vh" }}>
-            <Typing startDelay="3000"><h2>Regístrate y mejora la gestión de tus proveedores de forma sencilla</h2></Typing> 
+            <Typing startDelay={3000}><h2>Regístrate y mejora la gestión de tus proveedores de forma sencilla</h2></Typing> 
           </h2>
         </div>
     </div>

@@ -10,13 +10,8 @@ function SignIn(props) {
   const [validatedMessage, setValidatedMessage] = useState("");
   const [initialized, setInitialized] = useState(false);
 
-  const onSubmit = (data, e) => {
-    ValidateData(setValidatedMessage);
-    setTimeout(() => {
-      e.target.reset(); 
-      setValidatedMessage("");
-      setInitialized(true);
-      }, 2000);
+  async function onSubmit (data, e) {
+    await ValidateData(setInitialized, setValidatedMessage, data, e);
   }
   return (
     <div className="container text-info pt-5 d-flex justify-content-center">
