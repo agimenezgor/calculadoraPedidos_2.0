@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import bbdd from '../../bbdd_suppliers.json';
 
 function PrintSuppliers() {
 
-    /* let [supplier, setSupplier] = useState("");  */
+    let [supplier, setSupplier] = useState(""); 
     function supplierSelected(event){
-        console.log(event.currentTarget.childNodes)
-        for(let i = 0; i < event.currentTarget.childNodes.length; i++){
+        // Recorremos todos los nodos de la tabla
+        for(let i = 0; i < event.currentTarget.offsetParent.children[1].children.length; i++){
             if(i.toString() !== event.currentTarget.id){
-                event.currentTarget.childNodes[i].className = "";
+                // Borramos background 
+                event.currentTarget.offsetParent.children[1].children[i].className = "";
             }
             else{
-                event.currentTarget.className = "bg-warning";
+                // Cambiamos el background
+                event.currentTarget.className = "bg-success text-white";
+                // guardamos el número de proveedor
+                setSupplier(parseInt(event.currentTarget.children[1].innerText));
             }
         }
     }
-
+    console.log(supplier)
     return (
       <div className="ml-5 mr-5 pt-5 pb-5 text-info">
         <Card>
@@ -30,15 +34,18 @@ function PrintSuppliers() {
             ): (
               <Table striped responsive bordered hover>
                 <thead>
-                  <th>Nombre</th>
-                  <th>Número</th>
-                  <th>Días en servir</th>
-                  <th>Tipo de cálculo</th>
-                  <th>Palets mínimos</th>
-                  <th>Palets máximos</th>
-                  <th>Kilos mínimos</th>
-                  <th>Kilos máximos</th>
-                  <th>Franco</th>
+                  <tr>
+                      <th>Nombre</th>
+                      <th>Número</th>
+                      <th>Días en servir</th>
+                      <th>Tipo de cálculo</th>
+                      <th>Palets mínimos</th>
+                      <th>Palets máximos</th>
+                      <th>Kilos mínimos</th>
+                      <th>Kilos máximos</th>
+                      <th>Franco</th>
+                  </tr>
+                  
                 </thead>
                 <tbody>
                   {bbdd.map(function(obj, index) {
