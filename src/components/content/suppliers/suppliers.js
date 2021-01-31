@@ -1,9 +1,10 @@
 import React from 'react';
+import PrintSuppliers from '../printSuppliers';
 
 function Supplier() {
     return (
       <div>
-        this is the Supplier page
+        <PrintSuppliers/>
       </div>
     );
   }
