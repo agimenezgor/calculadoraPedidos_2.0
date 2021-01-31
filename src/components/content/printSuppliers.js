@@ -44,26 +44,35 @@ function PrintSuppliers() {
                       <th>Kilos mínimos</th>
                       <th>Kilos máximos</th>
                       <th>Franco</th>
+                      <th>Modificar datos</th>
+                      <th>Borrar proveedor</th>
                   </tr>
-                  
                 </thead>
                 <tbody>
                   {bbdd.map(function(obj, index) {
                     return(
                       <tr key={index} id={index} onClick={supplierSelected}>
-                        <td>{obj.name}</td>
-                        <td>{obj.number}</td>
-                        <td>{obj.days}</td>
-                        <td>{obj.calculateType}</td>
-                        <td>{obj.minPaletsType}</td>
-                        <td>{obj.maxPaletsType}</td>
-                        <td>{obj.minKilosType}</td>
-                        <td>{obj.maxKilosType}</td>
-                        <td>{obj.minMoney}</td>
-                      </tr>
+                          <td>{obj.name}</td>
+                          <td>{obj.number}</td>
+                          <td>{obj.days}</td>
+                          <td>{obj.calculateType}</td>
+                          <td>{obj.minPaletsType}</td>
+                          <td>{obj.maxPaletsType}</td>
+                          <td>{obj.minKilosType}</td>
+                          <td>{obj.maxKilosType}</td>
+                          <td>{obj.minMoney}</td>
+                          <td>
+                            <button className="btn btn-warning">Modificar</button>
+                          </td>
+                          <td>
+                            <button className="btn btn-danger">Borrar</button>
+                          </td>
+                        </tr>
+                      
                     ) 
                   })}
                 </tbody>
+                
               </Table>
             )}
               
