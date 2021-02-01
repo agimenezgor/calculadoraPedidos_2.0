@@ -22,7 +22,6 @@ function NewSupplier(props) {
   }
   
   const cookies = new Cookies();
-  let userInitialized = false;
   if(cookies.get('name') === undefined){
     console.log("usuario no inicializado")
     
