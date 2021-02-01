@@ -54,8 +54,9 @@ function PrintSuppliers() {
                       <th>Kilos mínimos</th>
                       <th>Kilos máximos</th>
                       <th>Franco</th>
+                      <th>Referencias</th>
                       <th>Modificar datos</th>
-                      <th>Borrar proveedor</th>
+                      <th>Borrar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -71,6 +72,9 @@ function PrintSuppliers() {
                           <td>{obj.minKilosType}</td>
                           <td>{obj.maxKilosType}</td>
                           <td>{obj.minMoney}</td>
+                          <td>
+                            <button className="btn btn-info" onClick={() => setModifyRedirect(true)}>Referencias</button>
+                          </td>
                           <td>
                             <button className="btn btn-warning" onClick={() => setModifyRedirect(true)}>Modificar</button>
                           </td>
