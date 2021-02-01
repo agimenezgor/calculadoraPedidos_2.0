@@ -8,11 +8,13 @@ import Cookies from 'universal-cookie';
 function PrintSuppliers() {
     const cookies = new Cookies();
     let userInitialized = false;
+    let disabledButtons = true;
     let bbdd;
     if(cookies.get('name') !== undefined){
       userInitialized = true;
       // llamar a api para descargar los proveedores
-      // bbdd = api response;
+      bbdd = [];
+      disabledButtons = false;
     }else{
       bbdd = sample_BBDD;
     }
@@ -50,7 +52,7 @@ function PrintSuppliers() {
           </Card.Header>
           <Card.Body>
             {bbdd.length === 0 ? (
-                <div>No hay proveedores guardados</div>
+                <h4 className="d-flex align-items-center justify-content-center text-danger">No hay proveedores guardados</h4>
             ): (
               <Table striped responsive bordered hover>
                 <thead>
@@ -86,10 +88,12 @@ function PrintSuppliers() {
                             <button className="btn btn-info" onClick={() => setReferencesRedirect(true)}>Referencias</button>
                           </td>
                           <td>
-                            <button className="btn btn-warning" onClick={() => setModifyRedirect(true)}>Modificar</button>
-                          </td>
+                            <button className="btn btn-warning" onClick={() => setModifyRedirect(true)} disabled={disabledButtons}>
+                                      Modificar</button>
+                          </td>{}
                           <td>
-                            <button className="btn btn-danger" onClick={() => setRemoveRedirect(true)}>Borrar</button>
+                            <button className="btn btn-danger" onClick={() => setRemoveRedirect(true)} disabled={disabledButtons}>
+                                      Borrar</button>
                           </td>
                         </tr>
                       
