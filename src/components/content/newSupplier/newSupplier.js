@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import PrintValidatedMessage from "./printValidateMessage";
 import ValidateData from "./validateData";
 import { Redirect } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
 function NewSupplier(props) {
 
@@ -19,8 +20,19 @@ function NewSupplier(props) {
   async function onSubmit (data, e) {
     await ValidateData(setValidatedMessage, data, e, setInitialized);
   }
+  
+  const cookies = new Cookies();
+  let userInitialized = false;
+  if(cookies.get('name') === undefined){
+    console.log("usuario no inicializado")
+    
+    setTimeout(() => {
+      alert("Inicia sesión para guardar un nuevo proveedor");
+      window.location.href="http://localhost:3000/inicio_sesion";
+    }, 1000);
+  }
 
-// style={{border: "1px solid #CCC", borderRadius: "1em", minHeight:"60vh", minWidth:"50vw"}}
+
   return (
       <div className="bg-info pt-4">
         <Card className="container" text="info" style={{borderRadius: "1em", minHeight:"60vh", minWidth:"40vw"}}>
