@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import bbdd from '../../bbdd_suppliers.json';
+import sample_BBDD from '../../bbdd_suppliers.json';
 import { Redirect } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
 function PrintSuppliers() {
-
+    const cookies = new Cookies();
+    let userInitialized = false;
+    let bbdd;
+    if(cookies.get('name') !== undefined){
+      userInitialized = true;
+      // llamar a api para descargar los proveedores
+      // bbdd = api response;
+    }else{
+      bbdd = sample_BBDD;
+    }
+    
     let [supplier, setSupplier] = useState(""); 
     let [modifyRedirect, setModifyRedirect] = useState(false); 
     let [removeRedirect, setRemoveRedirect] = useState(false);
@@ -26,10 +37,16 @@ function PrintSuppliers() {
         }
     }
     return (
-      <div className="ml-5 mr-5 pt-5 pb-5 text-info">
+      <div className="ml-5 mr-5 pt-4 pb-5 text-info">
         <Card>
           <Card.Header>
             <h2 className="d-flex justify-content-center">Lista de proveedores</h2>
+            {userInitialized !== true ? (
+            <div className="d-flex justify-content-around">
+              <h4 className="text-danger">Esta es una tabla de proveedores de muestra!!</h4>
+              <h4 className="text-success">Para ver tus proveedores inicia sesión</h4>
+              </div>
+            ):(<span></span>)} 
           </Card.Header>
           <Card.Body>
             {bbdd.length === 0 ? (
