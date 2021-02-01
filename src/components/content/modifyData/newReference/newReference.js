@@ -1,9 +1,10 @@
 import React from 'react';
-
+import { useParams } from 'react-router-dom';
 function NewReference() {
-    return (
+  let number = parseInt(useParams().number.substring(1));  
+  return (
       <div>
-        this is the NewReference page
+        this is the references page. Suppliers number: {number}
       </div>
     );
   }

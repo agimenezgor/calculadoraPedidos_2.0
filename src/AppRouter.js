@@ -20,10 +20,10 @@ function AppRouter(props){
                 <Route path="/calculadora"><CalculateOrder/></Route>
                 <Route path="/nuevo_proveedor"><NewSupplier /></Route>
                 
-                <Route path="/modificar_proveedor"><ModifySupplier/></Route>
+                <Route path="/modificar_proveedor/:number"><ModifySupplier/></Route>
                 <Route path="/modificar_referencia"><ModifyReference/></Route>
-                <Route path="/nueva_referencia"><NewReference/></Route>
-                <Route path="/eliminar_proveedor"><RemoveSupplier/></Route>
+                <Route path="/referencias/:number"><NewReference/></Route>
+                <Route path="/eliminar_proveedor/:number"><RemoveSupplier/></Route>
                 <Route path="/eliminar_referencia"><RemoveReference/></Route>
 
                 <Route path="/proveedores"><Suppliers/></Route>

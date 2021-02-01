@@ -8,7 +8,8 @@ function PrintSuppliers() {
 
     let [supplier, setSupplier] = useState(""); 
     let [modifyRedirect, setModifyRedirect] = useState(false); 
-    let [removeRedirect, setRemoveRedirect] = useState(false); 
+    let [removeRedirect, setRemoveRedirect] = useState(false);
+    let [referencesRedirect, setReferencesRedirect] = useState(false);  
     function supplierSelected(event){
         // Recorremos todos los nodos de la tabla
         for(let i = 0; i < event.currentTarget.offsetParent.children[1].children.length; i++){
@@ -24,14 +25,6 @@ function PrintSuppliers() {
             }
         }
     }
-    /* function modifyClick(){
-      setModifyRedirect(true);
-    }
-    function removeClick(){
-      setRemoveRedirect(true);
-    } */
-
-    console.log(supplier)
     return (
       <div className="ml-5 mr-5 pt-5 pb-5 text-info">
         <Card>
@@ -73,7 +66,7 @@ function PrintSuppliers() {
                           <td>{obj.maxKilosType}</td>
                           <td>{obj.minMoney}</td>
                           <td>
-                            <button className="btn btn-info" onClick={() => setModifyRedirect(true)}>Referencias</button>
+                            <button className="btn btn-info" onClick={() => setReferencesRedirect(true)}>Referencias</button>
                           </td>
                           <td>
                             <button className="btn btn-warning" onClick={() => setModifyRedirect(true)}>Modificar</button>
@@ -89,8 +82,9 @@ function PrintSuppliers() {
                 
               </Table>
             )}
-             {modifyRedirect === true ? (<Redirect to="/modificar_proveedor"/>):(<span></span>)} 
-             {removeRedirect === true ? (<Redirect to="/eliminar_proveedor"/>):(<span></span>)} 
+             {referencesRedirect === true ? (<Redirect to={"/referencias/:"+ supplier}/>):(<span></span>)} 
+             {modifyRedirect === true ? (<Redirect to={"/modificar_proveedor/:" + supplier}/>):(<span></span>)} 
+             {removeRedirect === true ? (<Redirect to={"/eliminar_proveedor/:"+ supplier}/>):(<span></span>)} 
           </Card.Body>
         </Card>
       </div>
