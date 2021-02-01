@@ -20,6 +20,7 @@ function PrintSuppliers() {
     }
     
     let [supplier, setSupplier] = useState(""); 
+    let [newSupplierRedirect, setNewSupplierRedirect] = useState(false); 
     let [modifyRedirect, setModifyRedirect] = useState(false); 
     let [removeRedirect, setRemoveRedirect] = useState(false);
     let [referencesRedirect, setReferencesRedirect] = useState(false);  
@@ -106,6 +107,10 @@ function PrintSuppliers() {
              {referencesRedirect === true ? (<Redirect to={"/referencias/:"+ supplier}/>):(<span></span>)} 
              {modifyRedirect === true ? (<Redirect to={"/modificar_proveedor/:" + supplier}/>):(<span></span>)} 
              {removeRedirect === true ? (<Redirect to={"/eliminar_proveedor/:"+ supplier}/>):(<span></span>)} 
+             {newSupplierRedirect === true ? (<Redirect to={"/nuevo_proveedor"}/>):(<span></span>)} 
+             <div className="d-flex justify-content-center">
+               <button className="btn btn-outline-info" onClick={() => setNewSupplierRedirect(true)}>Nuevo proveedor</button>
+            </div>
           </Card.Body>
         </Card>
       </div>
