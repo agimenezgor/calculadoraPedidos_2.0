@@ -23,7 +23,6 @@ function NewSupplier(props) {
   
   const cookies = new Cookies();
   if(cookies.get('name') === undefined){
-    console.log("usuario no inicializado")
     
     setTimeout(() => {
       alert("Inicia sesión para guardar un nuevo proveedor");
@@ -124,14 +123,14 @@ function NewSupplier(props) {
                             })
                           }
                   >
-                      <option selected disabled>Elige un tipo de cálculo</option>
-                      <option onClick={selected} value="Por número de palets">Por número de palets</option>
-                      <option onClick={selected} value="Por cantidad en kilos">Por cantidad en kilos</option>
-                      <option onClick={selected} value="Por franco (€)">Por franco (€)</option>
+                      <option defaultValue disabled>Elige un tipo de cálculo</option>
+                      <option onClick={selected} value="Palets">Por número de palets</option>
+                      <option onClick={selected} value="Kilos">Por cantidad en kilos</option>
+                      <option onClick={selected} value="Franco">Por franco (€)</option>
                   </select>
               </div>
 
-              {calculateType === "Por número de palets" ? (
+              {calculateType === "Palets" ? (
                 <div className="row d-flex justify-content-around">
                     <div className="col-md-5">
                         <label className="d-flex justify-content-center mt-4">Cantidad mínima de palets</label>
@@ -179,7 +178,7 @@ function NewSupplier(props) {
                     </div>
                 </div>
                 
-              ): calculateType === "Por cantidad en kilos" ? (
+              ): calculateType === "Kilos" ? (
                   <div className="row d-flex justify-content-around">
                     <div className="col-md-5">
                         <label className="d-flex justify-content-center mt-4">Cantidad mínima de kilos</label>
@@ -227,7 +226,7 @@ function NewSupplier(props) {
                     </div>
                 </div>
 
-              ): calculateType === "Por franco (€)" ? (
+              ): calculateType === "Franco" ? (
                 <div>
                   <label className="d-flex justify-content-center mt-4">Franco mínimo</label>
                     <div className="d-flex justify-content-center mt-4">

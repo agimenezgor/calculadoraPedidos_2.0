@@ -10,7 +10,7 @@ async function fetchDataLogin(data) {
   const fetchResponse = await fetch('http://localhost:3001/users/register', {
       method: 'POST',
       body: JSON.stringify({name: username, email: data.email, password: data.password }),
-      headers:{ 'Content-Type': 'application/json' },
+      headers:{'Content-Type': 'application/json'},
     })
     .then(response => response.json())
     .then(response => {return response;})
