@@ -1,22 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import sample_BBDD from '../../bbdd_suppliers.json';
 import { Redirect } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import fetchData from './suppliers/fetchData';
 
 function PrintSuppliers() {
     const cookies = new Cookies();
     let userInitialized = false;
     let disabledButtons = true;
-    let bbdd;
+    const [bbdd, setBbdd] = useState([]); 
+    
+    useEffect(() => {
+      bbdd_aux()
+    }, [])
+
+    const bbdd_aux = async () => {
+      const data = await fetchData();
+      setBbdd(data)
+      return data;
+    }
+
     if(cookies.get('name') !== undefined){
       userInitialized = true;
-      // llamar a api para descargar los proveedores
-      bbdd = [];
       disabledButtons = false;
     }else{
-      bbdd = sample_BBDD;
+      setBbdd(sample_BBDD);
     }
     
     let [supplier, setSupplier] = useState(""); 
