@@ -6,7 +6,7 @@ function PrintValidatedMessage(message){
     return <div>
             {validatedMessage === "" ? (
                 <span></span>)
-              : validatedMessage === "Proveedor registrado correctamente" ? (
+              : validatedMessage === "Proveedor guardado correctamente" ? (
                 <Alert variant="success" className="d-flex justify-content-center">
                   Proveedor registrado correctamente! Ahora introduce sus referencias
                 </Alert>

@@ -2,10 +2,8 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 async function ValidateData (setValidatedMessage, data, e, setInitilized) {  
-    console.log("datos del usuario: ", data);
     const supplier = await fetchNewSupplier(data)
-    console.log("despues del fetch: ", supplier)
-    setValidatedMessage("Proveedor registrado correctamente");
+    setValidatedMessage(supplier.message);
     setTimeout(() => {
       e.target.reset(); 
       setValidatedMessage("");
