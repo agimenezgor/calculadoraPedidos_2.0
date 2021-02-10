@@ -13,17 +13,16 @@ function PrintSuppliers() {
     const [bbdd, setBbdd] = useState([]); 
     
     useEffect(() => {
-      bbdd_aux()
-    }, [])
-
-    const bbdd_aux = async () => {
-      if(userInitialized){
-        const data = await fetchData();
-        setBbdd(data)
-        return data;
+      const bbdd_aux = async () => {
+        if(userInitialized){
+          const data = await fetchData();
+          setBbdd(data)
+          return data;
+        }
+        setBbdd(sample_BBDD)
       }
-      setBbdd(sample_BBDD)
-    }
+      bbdd_aux()
+    }, [userInitialized])
 
     if(cookies.get('name') !== undefined){
       userInitialized = true;
