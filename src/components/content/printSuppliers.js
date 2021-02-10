@@ -17,16 +17,17 @@ function PrintSuppliers() {
     }, [])
 
     const bbdd_aux = async () => {
-      const data = await fetchData();
-      setBbdd(data)
-      return data;
+      if(userInitialized){
+        const data = await fetchData();
+        setBbdd(data)
+        return data;
+      }
+      setBbdd(sample_BBDD)
     }
 
     if(cookies.get('name') !== undefined){
       userInitialized = true;
       disabledButtons = false;
-    }else{
-      setBbdd(sample_BBDD);
     }
     
     let [supplier, setSupplier] = useState(""); 
@@ -90,11 +91,11 @@ function PrintSuppliers() {
                           <td>{obj.number}</td>
                           <td>{obj.days}</td>
                           <td>{obj.calculateType}</td>
-                          <td>{obj.minPaletsType}</td>
-                          <td>{obj.maxPaletsType}</td>
-                          <td>{obj.minKilosType}</td>
-                          <td>{obj.maxKilosType}</td>
-                          <td>{obj.minMoney}</td>
+                          <td>{obj.minPalets}</td>
+                          <td>{obj.maxPalets}</td>
+                          <td>{obj.minKilos}</td>
+                          <td>{obj.maxKilos}</td>
+                          <td>{obj.money}</td>
                           <td>
                             <button className="btn btn-info" onClick={() => setReferencesRedirect(true)}>Referencias</button>
                           </td>
