@@ -4,7 +4,8 @@ const cookies = new Cookies();
 async function ValidateData (setValidatedMessage, data, e, setInitilized) {  
     const supplier = await fetchNewSupplier(data)
     setValidatedMessage(supplier.message);
-    if(supplier.message !== "El número de proveedor ya existe en la base de datos"){
+    if(supplier.message !== "El número de proveedor ya existe en la base de datos" && 
+    supplier.message !== "Imposible conectar con el servidor. Inténtelo de nuevo más tarde"){
       setTimeout(() => {
         e.target.reset(); 
         setValidatedMessage("");
@@ -14,8 +15,9 @@ async function ValidateData (setValidatedMessage, data, e, setInitilized) {
   }
 
   async function fetchNewSupplier(data) {
-    // Fetch             
-    const fetchResponse = await fetch('http://localhost:3001/suppliers', {
+    // Fetch    
+    try {
+      const fetchResponse = await fetch('http://localhost:3001/suppliers', {
         method: 'POST',
         body: JSON.stringify({
           name: data.name, number: data.number, days: data.days, calculateType: data.calculateType, 
@@ -36,6 +38,11 @@ async function ValidateData (setValidatedMessage, data, e, setInitilized) {
         return response;
       })
     return fetchResponse;
+    } catch (error) {
+      let response = {message : "Imposible conectar con el servidor. Inténtelo de nuevo más tarde"};
+      return response;
+    }         
+    
   }
 
   export default ValidateData;

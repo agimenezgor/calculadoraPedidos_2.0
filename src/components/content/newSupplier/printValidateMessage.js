@@ -14,6 +14,10 @@ function PrintValidatedMessage(message){
                 <Alert variant="danger" className="d-flex justify-content-center">
                   El número de proveedor ya existe en la base de datos
                 </Alert>
+              ): validatedMessage ==="Imposible conectar con el servidor. Inténtelo de nuevo más tarde" ? (
+                <Alert variant="danger" className="d-flex justify-content-center">
+                  Imposible conectar con el servidor. Inténtelo de nuevo más tarde
+                </Alert>
               ): (<span></span>)}
             </div>
 }
