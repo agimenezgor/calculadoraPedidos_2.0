@@ -4,11 +4,13 @@ const cookies = new Cookies();
 async function ValidateData (setValidatedMessage, data, e, setInitilized) {  
     const supplier = await fetchNewSupplier(data)
     setValidatedMessage(supplier.message);
-    setTimeout(() => {
-      e.target.reset(); 
-      setValidatedMessage("");
-      setInitilized(true);
-      }, 3000);
+    if(supplier.message !== "El número de proveedor ya existe en la base de datos"){
+      setTimeout(() => {
+        e.target.reset(); 
+        setValidatedMessage("");
+        setInitilized(true);
+        }, 3000);
+    }
   }
 
   async function fetchNewSupplier(data) {
@@ -24,7 +26,15 @@ async function ValidateData (setValidatedMessage, data, e, setInitilized) {
         },
       })
       .then(response => response.json())
-      .then(response => {return response;})
+      .then(response => {
+        console.log(response)
+        if(response.message === "There was a problem trying to register the Supplier"){
+          if(response.error.code === 11000){
+            response.message = "El número de proveedor ya existe en la base de datos";
+          }
+        }
+        return response;
+      })
     return fetchResponse;
   }
 

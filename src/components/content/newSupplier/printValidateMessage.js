@@ -10,6 +10,10 @@ function PrintValidatedMessage(message){
                 <Alert variant="success" className="d-flex justify-content-center">
                   Proveedor registrado correctamente! Ahora introduce sus referencias
                 </Alert>
+              ): validatedMessage ==="El número de proveedor ya existe en la base de datos" ? (
+                <Alert variant="danger" className="d-flex justify-content-center">
+                  El número de proveedor ya existe en la base de datos
+                </Alert>
               ): (<span></span>)}
             </div>
 }
