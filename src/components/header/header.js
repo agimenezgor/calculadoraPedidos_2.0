@@ -36,7 +36,7 @@ function Header(props) {
                 <div className="col-md-3 d-flex justify-content-center">
                   <Dropdown>
                     <Dropdown.Toggle variant="outline-info" size="lg" id="dropdown-basic">
-                      Bienvenido {cookies.get('name')}!
+                      Hola {cookies.get('name')}!
                       </Dropdown.Toggle>
             
                     <Dropdown.Menu>
