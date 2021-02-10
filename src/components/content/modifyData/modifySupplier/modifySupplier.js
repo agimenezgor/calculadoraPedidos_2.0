@@ -13,12 +13,13 @@ function ModifySupplier() {
     const [initialized, setInitialized] = useState(false);
     const [validatedMessage, setValidatedMessage] = useState("");
     const [number] = useState(parseInt(useParams().number.substring(1)));
-    /* let number = parseInt(useParams().number.substring(1)); */
+
     const [supplier, setSupplier] = useState("");
     useEffect(() => {
       const supplier= async () => {
         const data = await fetchData(number);
-          setSupplier(data)
+          setSupplier(data);
+          setCalculateType(data.calculateType);
           return data;
       }
       supplier()
@@ -31,7 +32,7 @@ function ModifySupplier() {
     function selected(e) {
       setCalculateType(e.target.value)
     }
-
+    console.log(supplier)
     return (
       <div className="bg-info pt-4">
         <Card className="container" text="info" style={{borderRadius: "1em", minHeight:"60vh", minWidth:"40vw"}}>
@@ -44,7 +45,7 @@ function ModifySupplier() {
               <label className="d-flex justify-content-center mt-4">Introduce el nombre del proveedor</label>
               <div className="d-flex justify-content-center mt-4">
                   <input name="name" className="form-control" style={{minWidth:"45vw"}} ref={register()} 
-                  placeholder={supplier.name === undefined ? ("valor actual: no guardado") : ("")}/>
+                  defaultValue={supplier.name}/>
               </div>
 
               <div className="row d-flex justify-content-around">
@@ -52,14 +53,14 @@ function ModifySupplier() {
                       <label className="d-flex justify-content-center mt-4">Número de identificación</label>
                       <div className="d-flex justify-content-center mt-4">
                           <input name="number" type="number" className="form-control" style={{maxWidth:"15vw"}} ref={register()} 
-                          placeholder={supplier.number === undefined ? ("valor actual: no guardado") : ("")}/>
+                           defaultValue={supplier.number}/>
                       </div>
                   </div>
                   <div className="col-md-5">
                       <label className="d-flex justify-content-center mt-4">Días que tardan en servir</label>
                       <div className="d-flex justify-content-center mt-4">
                           <input name="days" type="number" className="form-control" style={{maxWidth:"15vw"}} ref={register()}
-                          placeholder={supplier.days === undefined ? ("valor actual: no guardado") : ("")}/>
+                           defaultValue={supplier.days}/>
                       </div>
                   </div>   
               </div>
@@ -67,10 +68,12 @@ function ModifySupplier() {
               <label className="d-flex justify-content-center mt-4">Tipo de cálculo</label>
               <div className="d-flex justify-content-center mt-4">
                   <select className="form-select" name="calculateType"  ref={register()} defaultValue={supplier.calculateType}>
-                      <option disabled>Elige un tipo de cálculo</option>
-                      <option onClick={selected} value="Palets">Por número de palets</option>
-                      <option onClick={selected} value="Kilos">Por cantidad en kilos</option>
-                      <option onClick={selected} value="Franco">Por franco (€)</option>
+                      <option selected={supplier.calculateType === "Palets" ?(true):(false)} 
+                      onClick={selected} value="Palets">Por número de palets</option>
+                      <option selected={supplier.calculateType === "Kilos" ?(true):(false)} 
+                      onClick={selected} value="Kilos">Por cantidad en kilos</option>
+                      <option selected={supplier.calculateType === "Franco" ?(true):(false)} 
+                      onClick={selected} value="Franco">Por franco (€)</option>
                   </select>
               </div>
 
@@ -80,7 +83,7 @@ function ModifySupplier() {
                         <label className="d-flex justify-content-center mt-4">Cantidad mínima de palets</label>
                         <div className="d-flex justify-content-center mt-4">
                           <input name="minPalets" type="number" className="form-control"style={{maxWidth:"25vw"}} ref={register()}
-                          placeholder={supplier.minPalets === undefined ? ("valor actual: no guardado") : ("")}
+                          placeholder={supplier.maxPalets === undefined ? ("valor actual: no guardado") : ("")}
                           defaultValue={supplier.minPalets}/>
                         </div>
                     </div>
@@ -88,7 +91,7 @@ function ModifySupplier() {
                         <label className="d-flex justify-content-center mt-4">Cantidad máxima de palets</label>
                         <div className="d-flex justify-content-center mt-4">
                           <input name="maxPalets" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
-                          placeholder={supplier.maxpalets === undefined ? ("valor actual: no guardado") : ("")}
+                          placeholder={supplier.maxPalets === undefined ? ("valor actual: no guardado") : ("")}
                           defaultValue={supplier.maxPalets}/>
                         </div>
                     </div>
