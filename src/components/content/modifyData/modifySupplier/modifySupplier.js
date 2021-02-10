@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import fetchData from "./fetchData";
 
 function ModifySupplier() {
 
     const { register, handleSubmit} = useForm();
     const [calculateType, setCalculateType] = useState("");
-    let number = parseInt(useParams().number.substring(1));
     const [initialized, setInitialized] = useState(false);
     const [validatedMessage, setValidatedMessage] = useState("");
+
+    let number = parseInt(useParams().number.substring(1));
+    const [supplier, setSupplier] = useState("");
+    useEffect(() => {
+      const supplier= async () => {
+        // llamar a la api
+        const data = await fetchData(number);
+          setSupplier(data)
+          return data;
+      }
+      supplier()
+    }, [])
     
     async function onSubmit (data, e) {
-      console.log(data)
+      console.log("supplier: ", supplier)
+      console.log("data", data)
       /* await ValidateData(setValidatedMessage, data, e, setInitialized); */
     }
 
@@ -32,20 +44,23 @@ function ModifySupplier() {
           <form onSubmit={handleSubmit(onSubmit)}>
               <label className="d-flex justify-content-center mt-4">Introduce el nombre del proveedor</label>
               <div className="d-flex justify-content-center mt-4">
-                  <input name="name" className="form-control" style={{minWidth:"45vw"}} ref={register()}/>
+                  <input name="name" className="form-control" style={{minWidth:"45vw"}} ref={register()} 
+                  placeholder={"valor actual: " + supplier.name}/>
               </div>
 
               <div className="row d-flex justify-content-around">
                   <div className="col-md-5">
                       <label className="d-flex justify-content-center mt-4">Número de identificación</label>
                       <div className="d-flex justify-content-center mt-4">
-                          <input name="number" type="number" className="form-control" style={{maxWidth:"15vw"}} ref={register()}/>
+                          <input name="number" type="number" className="form-control" style={{maxWidth:"15vw"}} ref={register()} 
+                          placeholder={"valor actual: " + supplier.number}/>
                       </div>
                   </div>
                   <div className="col-md-5">
                       <label className="d-flex justify-content-center mt-4">Días que tardan en servir</label>
                       <div className="d-flex justify-content-center mt-4">
-                          <input name="days" type="number" className="form-control" style={{maxWidth:"15vw"}} ref={register()}/>
+                          <input name="days" type="number" className="form-control" style={{maxWidth:"15vw"}} ref={register()}
+                          placeholder={"valor actual: " + supplier.days}/>
                       </div>
                   </div>   
               </div>
@@ -65,13 +80,15 @@ function ModifySupplier() {
                     <div className="col-md-5">
                         <label className="d-flex justify-content-center mt-4">Cantidad mínima de palets</label>
                         <div className="d-flex justify-content-center mt-4">
-                          <input name="minPalets" type="number" className="form-control"style={{maxWidth:"25vw"}} ref={register()}/>
+                          <input name="minPalets" type="number" className="form-control"style={{maxWidth:"25vw"}} ref={register()}
+                          placeholder={supplier.minPalets !== undefined ? ("valor actual: " + supplier.minPalets) : ("valor actual: no guardado")}/>
                         </div>
                     </div>
                     <div className="col-md-5">
                         <label className="d-flex justify-content-center mt-4">Cantidad máxima de palets</label>
                         <div className="d-flex justify-content-center mt-4">
-                          <input name="maxPalets" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}/>
+                          <input name="maxPalets" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
+                          placeholder={supplier.maxPalets !== undefined ? ("valor actual: " + supplier.maxPalets) : ("valor actual: no guardado")}/>
                         </div>
                     </div>
                 </div>
@@ -81,13 +98,15 @@ function ModifySupplier() {
                     <div className="col-md-5">
                         <label className="d-flex justify-content-center mt-4">Cantidad mínima de kilos</label>
                         <div className="d-flex justify-content-center mt-4">
-                          <input name="minKilos" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}/>
+                          <input name="minKilos" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
+                          placeholder={supplier.minKilos !== undefined ? ("valor actual: " + supplier.minKilos) : ("valor actual: no guardado")}/>
                         </div>
                     </div>
                     <div className="col-md-5">
                         <label className="d-flex justify-content-center mt-4">Cantidad máxima de kilos</label>
                         <div className="d-flex justify-content-center mt-4">
-                          <input name="maxKilos" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}/>
+                          <input name="maxKilos" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
+                          placeholder={supplier.maxKilos !== undefined ? ("valor actual: " + supplier.maxKilos) : ("valor actual: no guardado")}/>
                         </div>
                     </div>
                 </div>
@@ -96,7 +115,8 @@ function ModifySupplier() {
                 <div>
                   <label className="d-flex justify-content-center mt-4">Franco mínimo</label>
                     <div className="d-flex justify-content-center mt-4">
-                      <input name="money" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}/>
+                      <input name="money" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
+                      placeholder={supplier.money !== undefined ? ("valor actual: " + supplier.money) : ("valor actual: no guardado")}/>
                     </div>
                 </div>
               ): (
