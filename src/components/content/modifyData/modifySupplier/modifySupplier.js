@@ -4,6 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import fetchData from "./fetchData";
 import ValidateData from './validateData';
+import PrintValidatedMessage from './printValidatedMessage';
 
 function ModifySupplier() {
 
@@ -133,7 +134,7 @@ function ModifySupplier() {
               <Redirect to="/proveedores"/>
             ): (<span></span>)}
           </Card.Body>
-          {/* <PrintValidatedMessage message={validatedMessage}/> */}
+          <PrintValidatedMessage message={validatedMessage}/>
         </Card>
       </div>
     );

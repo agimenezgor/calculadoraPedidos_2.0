@@ -3,7 +3,6 @@ const cookies = new Cookies();
 
 async function ValidateData (setValidatedMessage, data, e, setInitilized, number) {  
     const supplier = await fetchModifySupplier(data, number)
-    console.log("data en validateData: ", data)
     setValidatedMessage(supplier.message);
     if(supplier.message !== "There was a problem trying to update the supplier"){
       setTimeout(() => {
@@ -29,7 +28,6 @@ async function ValidateData (setValidatedMessage, data, e, setInitilized, number
       })
       .then(response => response.json())
       .then(response => {
-        console.log("respuesta en fetch", response)  
         return response;})
     return fetchResponse;
     } catch (error) {

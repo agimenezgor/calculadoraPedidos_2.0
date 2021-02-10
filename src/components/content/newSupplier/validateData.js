@@ -29,7 +29,6 @@ async function ValidateData (setValidatedMessage, data, e, setInitilized) {
       })
       .then(response => response.json())
       .then(response => {
-        console.log(response)
         if(response.message === "There was a problem trying to register the Supplier"){
           if(response.error.code === 11000){
             response.message = "El número de proveedor ya existe en la base de datos";
