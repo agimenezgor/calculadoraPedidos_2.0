@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import fetchData from "./fetchData";
 import ValidateData from './validateData';
 import PrintValidatedMessage from './printValidatedMessage';
+import PrintCalculateType from './printCalculateType';
 
 function ModifySupplier() {
 
@@ -32,7 +33,6 @@ function ModifySupplier() {
     function selected(e) {
       setCalculateType(e.target.value)
     }
-    console.log(supplier)
     return (
       <div className="bg-info pt-4">
         <Card className="container" text="info" style={{borderRadius: "1em", minHeight:"60vh", minWidth:"40vw"}}>
@@ -77,58 +77,8 @@ function ModifySupplier() {
                   </select>
               </div>
 
-              {calculateType === "Palets" ? (
-                <div className="row d-flex justify-content-around">
-                    <div className="col-md-5">
-                        <label className="d-flex justify-content-center mt-4">Cantidad mínima de palets</label>
-                        <div className="d-flex justify-content-center mt-4">
-                          <input name="minPalets" type="number" className="form-control"style={{maxWidth:"25vw"}} ref={register()}
-                          placeholder={supplier.maxPalets === undefined ? ("valor actual: no guardado") : ("")}
-                          defaultValue={supplier.minPalets}/>
-                        </div>
-                    </div>
-                    <div className="col-md-5">
-                        <label className="d-flex justify-content-center mt-4">Cantidad máxima de palets</label>
-                        <div className="d-flex justify-content-center mt-4">
-                          <input name="maxPalets" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
-                          placeholder={supplier.maxPalets === undefined ? ("valor actual: no guardado") : ("")}
-                          defaultValue={supplier.maxPalets}/>
-                        </div>
-                    </div>
-                </div>
-                
-              ): calculateType === "Kilos" ? (
-                  <div className="row d-flex justify-content-around">
-                    <div className="col-md-5">
-                        <label className="d-flex justify-content-center mt-4">Cantidad mínima de kilos</label>
-                        <div className="d-flex justify-content-center mt-4">
-                          <input name="minKilos" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
-                          placeholder={supplier.minKilos === undefined ? ("valor actual: no guardado") : ("")}
-                          defaultValue={supplier.minKilos}/>
-                        </div>
-                    </div>
-                    <div className="col-md-5">
-                        <label className="d-flex justify-content-center mt-4">Cantidad máxima de kilos</label>
-                        <div className="d-flex justify-content-center mt-4">
-                          <input name="maxKilos" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
-                          placeholder={supplier.maxKilos === undefined ? ("valor actual: no guardado") : ("")}
-                          defaultValue={supplier.maxKilos}/>
-                        </div>
-                    </div>
-                </div>
-
-              ): calculateType === "Franco" ? (
-                <div>
-                  <label className="d-flex justify-content-center mt-4">Franco mínimo</label>
-                    <div className="d-flex justify-content-center mt-4">
-                      <input name="money" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={register()}
-                      placeholder={supplier.money === undefined ? ("valor actual: no guardado") : ("")}
-                      defaultValue={supplier.money}/>
-                    </div>
-                </div>
-              ): (
-                <div></div>
-              )}
+              <PrintCalculateType calculateType={calculateType} supplier={supplier} register={register}/>
+              
               <div className="d-flex justify-content-center">
                 <button className="btn btn-outline-info mt-5">Guardar</button>
               </div>
