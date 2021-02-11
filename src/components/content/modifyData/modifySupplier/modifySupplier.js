@@ -29,10 +29,6 @@ function ModifySupplier() {
     async function onSubmit (data, e) {
       await ValidateData(setValidatedMessage, data, e, setInitialized, number);
     }
-
-    function selected(e) {
-      setCalculateType(e.target.value)
-    }
     return (
       <div className="bg-info pt-4">
         <Card className="container" text="info" style={{borderRadius: "1em", minHeight:"60vh", minWidth:"40vw"}}>
@@ -69,11 +65,11 @@ function ModifySupplier() {
               <div className="d-flex justify-content-center mt-4">
                   <select className="form-select" name="calculateType"  ref={register()} defaultValue={supplier.calculateType}>
                       <option selected={supplier.calculateType === "Palets" ?(true):(false)} 
-                      onClick={selected} value="Palets">Por número de palets</option>
+                      onClick={() => function selected(e) {setCalculateType(e.target.value)}} value="Palets">Por número de palets</option>
                       <option selected={supplier.calculateType === "Kilos" ?(true):(false)} 
-                      onClick={selected} value="Kilos">Por cantidad en kilos</option>
+                      onClick={() => function selected(e) {setCalculateType(e.target.value)}} value="Kilos">Por cantidad en kilos</option>
                       <option selected={supplier.calculateType === "Franco" ?(true):(false)} 
-                      onClick={selected} value="Franco">Por franco (€)</option>
+                      onClick={() => function selected(e) {setCalculateType(e.target.value)}} value="Franco">Por franco (€)</option>
                   </select>
               </div>
 
@@ -83,9 +79,7 @@ function ModifySupplier() {
                 <button className="btn btn-outline-info mt-5">Guardar</button>
               </div>
             </form>
-            {initialized === true ? (
-              <Redirect to="/proveedores"/>
-            ): (<span></span>)}
+            {initialized === true ? (<Redirect to="/proveedores"/>): (<span></span>)}
           </Card.Body>
           <PrintValidatedMessage message={validatedMessage}/>
         </Card>
