@@ -1,25 +1,17 @@
 import React from 'react';
-
+import PrintFormInput from './printFormInput';
 
 function PrintCalculateType(props){
     return <div>
             {props.calculateType === "Palets" ? (
                 <div className="row d-flex justify-content-around">
                     <div className="col-md-5">
-                        <label className="d-flex justify-content-center mt-4">Cantidad mínima de palets</label>
-                        <div className="d-flex justify-content-center mt-4">
-                          <input name="minPalets" type="number" className="form-control"style={{maxWidth:"25vw"}} 
-                          placeholder={props.supplier.minPalets === undefined ? ("valor actual: no guardado") : ("")} ref={props.register() }
-                          defaultValue={props.supplier.minPalets}/>
-                        </div>
+                        <PrintFormInput supplier={props.supplier} label="Cantidad mínima de palets" name="minPalets" 
+                        type="number" width={"25vw"} register={props.register}/>
                     </div>
                     <div className="col-md-5">
-                        <label className="d-flex justify-content-center mt-4">Cantidad máxima de palets</label>
-                        <div className="d-flex justify-content-center mt-4">
-                          <input name="maxPalets" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={props.register() }
-                          placeholder={props.supplier.maxPalets === undefined ? ("valor actual: no guardado") : ("")}
-                          defaultValue={props.supplier.maxPalets}/>
-                        </div>
+                        <PrintFormInput supplier={props.supplier} label="Cantidad máxima de palets" name="maxPalets" 
+                        type="number" width={"25vw"} register={props.register}/>
                     </div>
                 </div>
                 

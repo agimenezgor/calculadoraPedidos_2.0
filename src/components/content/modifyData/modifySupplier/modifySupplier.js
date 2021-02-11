@@ -26,6 +26,8 @@ function ModifySupplier() {
       supplier()
     }, [number])
 
+    function selected(e) {setCalculateType(e.target.value)}
+
     return (
       <div className="bg-info pt-4">
         <Card className="container" text="info" style={{borderRadius: "1em", minHeight:"60vh", minWidth:"40vw"}}>
@@ -62,11 +64,11 @@ function ModifySupplier() {
               <div className="d-flex justify-content-center mt-4">
                   <select className="form-select" name="calculateType"  ref={register()} defaultValue={supplier.calculateType}>
                       <option selected={supplier.calculateType === "Palets" ?(true):(false)} 
-                      onClick={() => function selected(e) {setCalculateType(e.target.value)}} value="Palets">Por número de palets</option>
+                      onClick={selected} value="Palets">Por número de palets</option>
                       <option selected={supplier.calculateType === "Kilos" ?(true):(false)} 
-                      onClick={() => function selected(e) {setCalculateType(e.target.value)}} value="Kilos">Por cantidad en kilos</option>
+                      onClick={selected} value="Kilos">Por cantidad en kilos</option>
                       <option selected={supplier.calculateType === "Franco" ?(true):(false)} 
-                      onClick={() => function selected(e) {setCalculateType(e.target.value)}} value="Franco">Por franco (€)</option>
+                      onClick={selected} value="Franco">Por franco (€)</option>
                   </select>
               </div>
 
