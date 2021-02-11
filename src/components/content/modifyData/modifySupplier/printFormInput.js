@@ -7,10 +7,8 @@ function PrintFormInput(props){
           return props.supplier.minPalets;
         case "maxPalets":
           return props.supplier.maxPalets;
-        case "minKilos":
-          break;
         default:
-          break;
+          return props.supplier.money;
       }
     }
     return <div>

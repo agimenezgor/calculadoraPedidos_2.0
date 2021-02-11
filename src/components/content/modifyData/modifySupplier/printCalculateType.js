@@ -37,12 +37,8 @@ function PrintCalculateType(props){
 
               ): props.calculateType === "Franco" ? (
                 <div>
-                  <label className="d-flex justify-content-center mt-4">Franco mínimo</label>
-                    <div className="d-flex justify-content-center mt-4">
-                      <input name="money" type="number" className="form-control" style={{maxWidth:"25vw"}} ref={props.register()}
-                      placeholder={props.supplier.money === undefined ? ("valor actual: no guardado") : ("")}
-                      defaultValue={props.supplier.money}/>
-                    </div>
+                    <PrintFormInput supplier={props.supplier} label="Franco mínimo" name="money" 
+                    type="number" width={"25vw"} register={props.register}/>
                 </div>
               ): (
                 <div></div>
