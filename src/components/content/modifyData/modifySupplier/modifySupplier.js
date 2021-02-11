@@ -6,6 +6,7 @@ import fetchData from "./fetchData";
 import ValidateData from './validateData';
 import PrintValidatedMessage from './printValidatedMessage';
 import PrintCalculateType from './printCalculateType';
+import PrintFormInput from './printFormInput';
 
 function ModifySupplier() {
 
@@ -14,7 +15,6 @@ function ModifySupplier() {
     const [initialized, setInitialized] = useState(false);
     const [validatedMessage, setValidatedMessage] = useState("");
     const [number] = useState(parseInt(useParams().number.substring(1)));
-
     const [supplier, setSupplier] = useState("");
     useEffect(() => {
       const supplier= async () => {
@@ -25,7 +25,6 @@ function ModifySupplier() {
       }
       supplier()
     }, [number])
-
     function selected(e) {setCalculateType(e.target.value)}
 
     return (
@@ -37,26 +36,17 @@ function ModifySupplier() {
           <Card.Body className="d-flex justify-content-center">
 
           <form onSubmit={handleSubmit(async function onSubmit (data, e) {await ValidateData(setValidatedMessage, data, e, setInitialized, number)})}>
-              <label className="d-flex justify-content-center mt-4">Introduce el nombre del proveedor</label>
-              <div className="d-flex justify-content-center mt-4">
-                  <input name="name" className="form-control" style={{minWidth:"45vw"}} ref={register()} 
-                  defaultValue={supplier.name}/>
-              </div>
+              <PrintFormInput supplier={supplier} label="Introduce el nombre del proveedor" name="name" 
+                type="String" width={"45vw"} register={register}/>
 
               <div className="row d-flex justify-content-around">
                   <div className="col-md-5">
-                      <label className="d-flex justify-content-center mt-4">Número de identificación</label>
-                      <div className="d-flex justify-content-center mt-4">
-                          <input name="number" type="number" className="form-control" style={{maxWidth:"15vw"}} ref={register()} 
-                           defaultValue={supplier.number}/>
-                      </div>
+                      <PrintFormInput supplier={supplier} label="Número de identificación" name="number" 
+                        type="number" width={"15vw"} register={register}/>
                   </div>
                   <div className="col-md-5">
-                      <label className="d-flex justify-content-center mt-4">Días que tardan en servir</label>
-                      <div className="d-flex justify-content-center mt-4">
-                          <input name="days" type="number" className="form-control" style={{maxWidth:"15vw"}} ref={register()}
-                           defaultValue={supplier.days}/>
-                      </div>
+                      <PrintFormInput supplier={supplier} label="Días que tardan en servir" name="days" 
+                        type="number" width={"15vw"} register={register}/>
                   </div>   
               </div>
               

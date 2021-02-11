@@ -3,6 +3,12 @@ import React from 'react';
 function PrintFormInput(props){
     function setName(){
       switch(props.name){
+        case "name":
+          return props.supplier.name;
+        case "number":
+          return props.supplier.number;
+        case "days":
+          return props.supplier.days;
         case "minPalets":
           return props.supplier.minPalets;
         case "maxPalets":
