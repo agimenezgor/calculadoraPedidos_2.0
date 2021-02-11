@@ -26,9 +26,6 @@ function ModifySupplier() {
       supplier()
     }, [number])
 
-    async function onSubmit (data, e) {
-      await ValidateData(setValidatedMessage, data, e, setInitialized, number);
-    }
     return (
       <div className="bg-info pt-4">
         <Card className="container" text="info" style={{borderRadius: "1em", minHeight:"60vh", minWidth:"40vw"}}>
@@ -37,7 +34,7 @@ function ModifySupplier() {
           </Card.Header>
           <Card.Body className="d-flex justify-content-center">
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(async function onSubmit (data, e) {await ValidateData(setValidatedMessage, data, e, setInitialized, number)})}>
               <label className="d-flex justify-content-center mt-4">Introduce el nombre del proveedor</label>
               <div className="d-flex justify-content-center mt-4">
                   <input name="name" className="form-control" style={{minWidth:"45vw"}} ref={register()} 
