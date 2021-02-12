@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
+import FetchDeleteData from './fetchDeleteData';
 
 function RemoveSupplier() {
     const [redirecting, setRedirecting] = useState(false);
     const number = useParams().number.substring(1)
+    async function apiResponse (number) {
+      console.log(number)
+      const response = await FetchDeleteData(number);
+      if(response.message === "Proveedor borrado correctamente"){
+        return true;
+      }
+      return false;
+    }
     const showAlert = () => {
       swal({
         title: "Borrar proveedor",
@@ -25,11 +34,15 @@ function RemoveSupplier() {
           .then(() => {setRedirecting(true)})
         }
         else{
+          if(apiResponse(number)){
+            console.log("borrado")
+          }
           swal({
             title: "Borrado",
             text: "Proveedor borrado correctamente",
             icon: "success",
-            button: "Aceptar"
+            button: "Aceptar",
+            timer: 1500
           })
           .then(() => {setRedirecting(true)})
         }
