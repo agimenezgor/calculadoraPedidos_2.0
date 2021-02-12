@@ -11,6 +11,7 @@ import ModifyReference from './components/content/modifyData/modifyReference/mod
 import NewReference from './components/content/modifyData/newReference/newReference';
 import RemoveSupplier from './components/content/modifyData/removeSupplier/removeSupplier';
 import RemoveReference from './components/content/modifyData/removeReference/removeReference';
+import References from './components/content/references/references';
 
 function AppRouter(props){
     return (
@@ -22,11 +23,12 @@ function AppRouter(props){
                 
                 <Route path="/modificar_proveedor/:number"><ModifySupplier/></Route>
                 <Route path="/modificar_referencia"><ModifyReference/></Route>
-                <Route path="/referencias/:number"><NewReference/></Route>
+                <Route path="/nueva_referencia/:number"><NewReference/></Route>
                 <Route path="/eliminar_proveedor/:number"><RemoveSupplier/></Route>
                 <Route path="/eliminar_referencia"><RemoveReference/></Route>
 
                 <Route path="/proveedores"><Suppliers/></Route>
+                <Route path="/referencias/:number"><References/></Route>
                 
                 <Route path="/registro"><SignUp/></Route>
                 <Route path="/inicio_sesion"><SignIn setUser = {props.setUser}/></Route>  

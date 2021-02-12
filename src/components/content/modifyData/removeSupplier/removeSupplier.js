@@ -7,7 +7,6 @@ function RemoveSupplier() {
     const [redirecting, setRedirecting] = useState(false);
     const number = useParams().number.substring(1)
     async function apiResponse (number) {
-      console.log(number)
       const response = await FetchDeleteData(number);
       if(response.message === "Proveedor borrado correctamente"){
         return true;
@@ -35,17 +34,27 @@ function RemoveSupplier() {
         }
         else{
           if(apiResponse(number)){
-            console.log("borrado")
+            swal({
+              title: "Borrado",
+              text: "Proveedor borrado correctamente",
+              icon: "success",
+              button: "Aceptar",
+              timer: 1500
+            })
+            .then(() => {setRedirecting(true)})
           }
-          swal({
-            title: "Borrado",
-            text: "Proveedor borrado correctamente",
-            icon: "success",
-            button: "Aceptar",
-            timer: 1500
-          })
-          .then(() => {setRedirecting(true)})
-        }
+          else{
+            swal({
+              title: "Error",
+              text: "No podemos borrar el proveedor. Inténtalo más tarde",
+              icon: "danger",
+              button: "Aceptar",
+              timer: 1500
+            })
+            .then(() => {setRedirecting(true)})
+          }
+          }
+          
       })
     }
     return (
