@@ -1,9 +1,11 @@
 import React from 'react';
-
+import PrintReferences from '../printReferences';
+import { useParams } from 'react-router-dom';
 function References() {
+    let number = parseInt(useParams().number.substring(1)); 
     return (
       <div>
-        this is the references page
+        <PrintReferences number={number}/>
       </div>
     );
   }
