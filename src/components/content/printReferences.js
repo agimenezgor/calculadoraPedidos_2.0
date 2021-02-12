@@ -3,11 +3,9 @@ import Cookies from 'universal-cookie';
 import sample_BBDD from '../../bbdd_suppliers.json';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
+import { Redirect } from "react-router-dom";
 
 function PrintReferences(props) {
-    // Primero comprobamos hay un usuario inicializado mediante las cookies.
-        // Si no lo está, pintamos las referencias de muestra.
-        // Si lo está, hacemos la llamada a la API.
     const number = props.number - 1111;
     const cookies = new Cookies();
     let userInitialized = false;
@@ -30,6 +28,28 @@ function PrintReferences(props) {
         userInitialized = true;
         disabledButtons = false;
     }
+
+    let [reference, setReference] = useState(""); 
+    let [newReferenceRedirect, setNewReferenceRedirect] = useState(false); 
+    let [modifyRedirect, setModifyRedirect] = useState(false); 
+    let [removeRedirect, setRemoveRedirect] = useState(false);
+
+    function referenceSelected(event){
+        // Recorremos todos los nodos de la tabla
+        for(let i = 0; i < event.currentTarget.offsetParent.children[1].children.length; i++){
+            if(i.toString() !== event.currentTarget.id){
+                // Borramos background 
+                event.currentTarget.offsetParent.children[1].children[i].className = "";
+            }
+            else{
+                // Cambiamos el background
+                event.currentTarget.className = "bg-success text-white";
+                // guardamos el número de proveedor
+                setReference(parseInt(event.currentTarget.children[1].innerText));
+            }
+        }
+    }
+
     return (
         <div className="ml-5 mr-5 pt-4 pb-5 text-info">
         <Card>
@@ -61,18 +81,18 @@ function PrintReferences(props) {
                 <tbody>
                   {bbdd.map(function(obj, index) {
                     return(
-                      <tr key={index} id={index}>
+                      <tr key={index} id={index} onClick={referenceSelected}>
                           <td>{obj.name}</td>
                           <td>{obj.number}</td>
                           <td>{obj.conditioning}</td>
                           <td>{obj.facing}</td>
                           <td>{obj.sales}</td>
                           <td>
-                            <button className="btn btn-warning" onClick={() => console.log("Modificar datos")} disabled={disabledButtons}>
+                            <button className="btn btn-warning" onClick={() => setModifyRedirect(true)} disabled={disabledButtons}>
                                       Modificar</button>
                           </td>{}
                           <td>
-                            <button className="btn btn-danger" onClick={() => console.log("Borrar referencia")} disabled={disabledButtons}>
+                            <button className="btn btn-danger" onClick={() => setRemoveRedirect(true)} disabled={disabledButtons}>
                                       Borrar</button>
                           </td>
                         </tr>
@@ -83,8 +103,12 @@ function PrintReferences(props) {
                 
               </Table>
             )}
+             {modifyRedirect === true ? (<Redirect to={"/modificar_referencia/:" + reference}/>):(<span></span>)} 
+             {removeRedirect === true ? (<Redirect to={"/eliminar_referencia/:"+ reference}/>):(<span></span>)} 
+             {newReferenceRedirect === true ? (<Redirect to={"/nueva_referencia/:" + props.number}/>):(<span></span>)}
+
              <div className="d-flex justify-content-center">
-               <button className="btn btn-outline-info" onClick={() => console.log("Guardar")}>Nueva referencia</button>
+               <button className="btn btn-outline-info" onClick={() => setNewReferenceRedirect(true)}>Nueva referencia</button>
             </div>
           </Card.Body>
         </Card>
