@@ -2,20 +2,37 @@ import React from 'react';
 
 function PrintFormInput(props){
     function setName(){
-      switch(props.name){
-        case "name":
-          return props.supplier.name;
-        case "number":
-          return props.supplier.number;
-        case "days":
-          return props.supplier.days;
-        case "minPalets":
-          return props.supplier.minPalets;
-        case "maxPalets":
-          return props.supplier.maxPalets;
-        default:
-          return props.supplier.money;
+      if(props.supplier){
+        switch(props.name){
+          case "name":
+            return props.supplier.name;
+          case "number":
+            return props.supplier.number;
+          case "days":
+            return props.supplier.days;
+          case "minPalets":
+            return props.supplier.minPalets;
+          case "maxPalets":
+            return props.supplier.maxPalets;
+          default:
+            return props.supplier.money;
+        }
       }
+      else if(props.reference) {
+        switch(props.name){
+          case "name":
+            return props.supplier.name;
+          case "number":
+            return props.supplier.number;
+          case "conditioning":
+            return props.supplier.conditioning;
+          case "facing":
+            return props.supplier.facing;
+          default:
+            return props.supplier.sales;
+        }
+      }
+      
     }
     return <div>
                 <label className="d-flex justify-content-center mt-4">{props.label}</label>

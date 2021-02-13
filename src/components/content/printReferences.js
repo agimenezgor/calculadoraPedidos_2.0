@@ -50,7 +50,6 @@ function PrintReferences(props) {
             }
         }
     }
-
     return (
         <div className="ml-5 mr-5 pt-4 pb-5 text-info">
         <Card>
@@ -104,8 +103,8 @@ function PrintReferences(props) {
                 
               </Table>
             )}
-             {modifyRedirect === true ? (<Redirect to={"/modificar_referencia/:" + reference}/>):(<span></span>)} 
-             {removeRedirect === true ? (<Redirect to={"/eliminar_referencia/:"+ reference}/>):(<span></span>)} 
+             {modifyRedirect === true ? (<Redirect to={"/modificar_referencia/:" + props.number + "/:" + reference}/>):(<span></span>)} 
+             {removeRedirect === true ? (<Redirect to={"/eliminar_referencia/:" + props.number + "/:" + reference}/>):(<span></span>)} 
              {newReferenceRedirect === true ? (<Redirect to={"/nueva_referencia/:" + props.number}/>):(<span></span>)}
 
              <div className="d-flex justify-content-center">
