@@ -4,9 +4,9 @@ import sample_BBDD from '../../bbdd_suppliers.json';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import { Redirect } from "react-router-dom";
+import FetchData from './references/fetchData';
 
 function PrintReferences(props) {
-    const number = props.number - 1111;
     const cookies = new Cookies();
     let userInitialized = false;
     let disabledButtons = true;
@@ -14,15 +14,16 @@ function PrintReferences(props) {
 
     useEffect(() => {
         const bbdd_aux = async () => {
-          /* if(userInitialized){
-            const data = await fetchData();
+          if(userInitialized){
+            const data = await FetchData(props.number);
             setBbdd(data)
             return data;
-          } */
+          }
+          const number = props.number - 1111;
           setBbdd(sample_BBDD[number].references)
         }
         bbdd_aux()
-      }, [userInitialized, number])
+      }, [userInitialized, props.number])
 
     if(cookies.get('name') !== undefined){
         userInitialized = true;
