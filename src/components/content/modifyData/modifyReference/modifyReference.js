@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import PrintFormInput from '../modifySupplier/printFormInput';
 import ValidateData from './validateData';
 import FetchData from './fetchData';
+import PrintValidatedMessage from './printValidateMessage';
 
 function ModifyReference() {
     const { register, handleSubmit} = useForm();
@@ -63,7 +64,7 @@ function ModifyReference() {
             </form>
             {initialized === true ? (<Redirect to="/referencias"/>): (<span></span>)}
           </Card.Body>
-          {/* <PrintValidatedMessage message={validatedMessage}/> */}
+          <PrintValidatedMessage message={validatedMessage} supplier={supplier}/>
         </Card>
       </div>
     );
