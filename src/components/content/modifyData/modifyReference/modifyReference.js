@@ -32,7 +32,7 @@ function ModifyReference() {
           </Card.Header>
           <Card.Body className="d-flex justify-content-center">
 
-          <form onSubmit={handleSubmit(async function onSubmit (data, e) {await ValidateData(setValidatedMessage, data, e, setInitialized, number)})}>
+          <form onSubmit={handleSubmit(async function onSubmit (data, e) {await ValidateData(setValidatedMessage, data, e, setInitialized, number, supplier)})}>
               <PrintFormInput reference={reference} label="Introduce el nombre de la referencia" name="name" 
                 type="String" width={"45vw"} register={register}/>
 

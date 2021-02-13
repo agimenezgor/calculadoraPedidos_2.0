@@ -1,24 +1,21 @@
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-async function ValidateData (setValidatedMessage, data, e, setInitilized, number) {  
-  /* setValidatedMessage("Referencia actualizada correctamente"); */
-  setValidatedMessage("Error");
-  /* const reference = await fetchModifyReference(data, number)
+async function ValidateData (setValidatedMessage, data, e, setInitilized, number, supplier) {  
+  const reference = await fetchModifyReference(data, number, supplier)
     setValidatedMessage(reference.message);
     if(reference.message !== "There was a problem trying to update the reference"){
       setTimeout(() => {
         e.target.reset(); 
-        setValidatedMessage("");
         setInitilized(true);
         }, 3000);
-    } */
+    }
   }
 
-  async function fetchModifyReference(data, number) {
+  async function fetchModifyReference(data, number, supplier) {
     // Fetch    
     try {
-      const fetchResponse = await fetch(`http://localhost:3001/reference/${number}`, {
+      const fetchResponse = await fetch(`http://localhost:3001/references/${supplier}/${number}`, {
         method: 'PUT',
         body: JSON.stringify({
             name: data.name, number: data.number, conditioning: data.conditioning, facing: data.facing, sales: data.sales}),
