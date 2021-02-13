@@ -1,27 +1,27 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Redirect, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import PrintFormInput from '../modifySupplier/printFormInput';
 import ValidateData from './validateData';
+import FetchData from './fetchData';
 
 function ModifyReference() {
-    console.log(useParams())
     const { register, handleSubmit} = useForm();
     const [initialized, setInitialized] = useState(false);
     const [validatedMessage, setValidatedMessage] = useState("");
+    const [supplier] = useState(parseInt(useParams().supplier.substring(1)));
     const [number] = useState(parseInt(useParams().number.substring(1)));
     const [reference, setReference] = useState("");
 
-    /* useEffect(() => {
+    useEffect(() => {
       const reference= async () => {
-        const data = await fetchData(number);
-          setSupplier(data);
-          setCalculateType(data.calculateType);
+        const data = await FetchData(supplier, number);
+          setReference(data);
           return data;
       }
       reference()
-    }, [number]) */
+    }, [supplier, number])
     
     return (
       <div className="bg-info pt-4">

@@ -21,15 +21,15 @@ function PrintFormInput(props){
       else if(props.reference) {
         switch(props.name){
           case "name":
-            return props.supplier.name;
+            return props.reference.name;
           case "number":
-            return props.supplier.number;
+            return props.reference.number;
           case "conditioning":
-            return props.supplier.conditioning;
+            return props.reference.conditioning;
           case "facing":
-            return props.supplier.facing;
+            return props.reference.facing;
           default:
-            return props.supplier.sales;
+            return props.reference.sales;
         }
       }
       
