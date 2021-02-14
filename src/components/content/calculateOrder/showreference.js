@@ -5,6 +5,7 @@ import fetchData from '../references/fetchData';
 
 function ShowReferences(props) {
   const [bbdd, setBbdd] = useState([]); 
+  const [modifyReference, setModifyReference] = useState([]); 
   useEffect(() => {
     const bbdd_aux = async () => {
       const data = await fetchData(props.supplier);
@@ -12,6 +13,21 @@ function ShowReferences(props) {
     }
     bbdd_aux()
   }, [props.supplier]);
+  function selected(event){
+    // Recorremos todos los nodos de la tabla
+    for(let i = 0; i < event.currentTarget.offsetParent.children[1].children.length; i++){
+        if(i.toString() !== event.currentTarget.id){
+            // Borramos background 
+            event.currentTarget.offsetParent.children[1].children[i].className = "";
+        }
+        else{
+            // Cambiamos el background
+            event.currentTarget.className = "bg-success text-white";
+            // guardamos el número de proveedor
+            setModifyReference(parseInt(event.currentTarget.children[1].innerText));
+        }
+    }
+}
   return (
         <div className="pt-5 pb-5 container text-info">
           <Card>
@@ -37,7 +53,7 @@ function ShowReferences(props) {
                   <tbody>
                     {bbdd.map(function(obj, index) {
                       return(
-                        <tr key={index} id={index}>
+                        <tr key={index} id={index} onClick={selected}>
                             <td>{obj.name}</td>
                             <td>{obj.number}</td>
                             <td>{obj.conditioning}</td>
