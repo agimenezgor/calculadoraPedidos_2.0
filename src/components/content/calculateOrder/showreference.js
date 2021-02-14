@@ -2,10 +2,13 @@ import React, { useState, useEffect }  from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import fetchData from '../references/fetchData';
+import { useForm } from "react-hook-form";
 
 function ShowReferences(props) {
+  const { register, handleSubmit} = useForm();
   const [bbdd, setBbdd] = useState([]); 
-  const [modifyReference, setModifyReference] = useState([]); 
+  const [modifyReference, setModifyReference] = useState("");
+  const [showInputs, setShowInputs] = useState(false); 
   useEffect(() => {
     const bbdd_aux = async () => {
       const data = await fetchData(props.supplier);
@@ -25,9 +28,14 @@ function ShowReferences(props) {
             event.currentTarget.className = "bg-success text-white";
             // guardamos el número de proveedor
             setModifyReference(parseInt(event.currentTarget.children[1].innerText));
+            setShowInputs(true)
         }
     }
-}
+  }
+  async function onSubmit (data, e) {
+    //llamada a la api para modificar
+    console.log(data);
+  }
   return (
         <div className="pt-5 pb-5 container text-info">
           <Card>
@@ -66,6 +74,23 @@ function ShowReferences(props) {
                 </Table>
               </div>
               )}
+              {showInputs === true ?(
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="row d-flex justify-content-around pt-4">
+                  <div>
+                    <label className="d-flex justify-content-center">Facing</label>
+                    <input type="number" name="facing" className="form-control" style={{minWidth:"15vw"}} ref={register()}/>
+                  </div>
+                  <div>
+                    <label className="d-flex justify-content-center">Ventas</label>
+                    <input type="number" name="sales" className="form-control" style={{minWidth:"15vw"}} ref={register()}/>
+                  </div>
+                </div>
+                <div className="d-flex justify-content-center p-4">
+                <button className="btn btn-outline-info">Modificar</button>
+              </div>
+              </form>
+              ):(<span></span>)}
               <div className=" d-flex justify-content-center p-4">
                 <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Comprobado!!</button>
               </div>
