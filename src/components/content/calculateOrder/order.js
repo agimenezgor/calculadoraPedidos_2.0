@@ -6,7 +6,7 @@ function Order(props) {
         this is the order page
 
         <div className="d-flex justify-content-center p-4">
-            <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Empezar!!</button>
+            <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Perfecto!!</button>
         </div>
       </div>
     );

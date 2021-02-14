@@ -6,7 +6,7 @@ function ShowReference(props) {
         this is the ShowReference page. Supplier: {props.supplier}
 
         <div className="d-flex justify-content-center p-4">
-            <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Empezar!!</button>
+            <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Comprobado!!</button>
         </div>
       </div>
     );

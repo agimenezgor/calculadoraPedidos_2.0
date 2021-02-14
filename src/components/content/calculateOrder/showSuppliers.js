@@ -6,10 +6,13 @@ import fetchData from '../suppliers/fetchData';
 function ShowSuppliers(props) {
   const [bbdd, setBbdd] = useState([]); 
     
-  useEffect(async () => {
-    const data = await fetchData();
-    setBbdd(data);
-  });
+  useEffect(() => {
+    const bbdd_aux = async () => {
+      const data = await fetchData();
+      setBbdd(data);
+    }
+    bbdd_aux()
+  }, []);
   
   function supplierSelected(event){
       // Recorremos todos los nodos de la tabla
@@ -72,7 +75,7 @@ function ShowSuppliers(props) {
             </Table>
           )}
             <div className="d-flex justify-content-center p-4">
-              <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Empezar!!</button>
+              <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Lo tengo!!</button>
             </div>
         </Card.Body>
       </Card>
