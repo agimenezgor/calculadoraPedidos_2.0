@@ -5,6 +5,7 @@ import fetchData from '../suppliers/fetchData';
 
 function ShowSuppliers(props) {
   const [bbdd, setBbdd] = useState([]); 
+  const [showAlert, setShowAlert] = useState(false); 
   useEffect(() => {
     const bbdd_aux = async () => {
       const data = await fetchData();
@@ -76,8 +77,19 @@ function ShowSuppliers(props) {
           </div>
           )}
             <div className="d-flex justify-content-center p-4">
-              <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Lo tengo!!</button>
+              <button onClick={() => {
+                if(props.supplier){
+                  setShowAlert(false);
+                  props.setShowed(props.showed + 1)
+                }else{
+                  setShowAlert(true);
+                }
+              }} className="btn btn-outline-secondary">Lo tengo!!</button>
             </div>
+          {showAlert === true ? (
+          <div className="d-flex justify-content-center text-danger">
+            <h4>Atención!! Elige un proveedor antes de continuar</h4>
+          </div>):(<span></span>)}
         </Card.Body>
       </Card>
     </div>

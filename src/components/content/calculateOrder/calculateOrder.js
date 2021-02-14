@@ -22,7 +22,7 @@ function CalculateOrder() {
       switch(showed){
         case 1:
           return(
-            <ShowSuppliers setSupplier={setSupplier} showed={showed} setShowed={setShowed}/>
+            <ShowSuppliers supplier={supplier} setSupplier={setSupplier} showed={showed} setShowed={setShowed}/>
           )
         case 2:
           return(
