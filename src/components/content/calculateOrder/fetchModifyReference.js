@@ -1,12 +1,12 @@
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-async function ValidateData (data, e, number, supplier) {  
+async function ValidateData (setValidatedMessage, data, e, number, supplier) {  
   const reference = await fetchModifyReference(data, number, supplier)
-    //setValidatedMessage(reference.message);
+    setValidatedMessage(reference.message);
     if(reference.message !== "There was a problem trying to update the reference"){
       setTimeout(() => {
-        e.target.reset(); 
+        e.target.reset();
         }, 3000);
     }
   }
