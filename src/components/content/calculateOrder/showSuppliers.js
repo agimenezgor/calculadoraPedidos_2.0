@@ -5,7 +5,6 @@ import fetchData from '../suppliers/fetchData';
 
 function ShowSuppliers(props) {
   const [bbdd, setBbdd] = useState([]); 
-    
   useEffect(() => {
     const bbdd_aux = async () => {
       const data = await fetchData();
@@ -34,12 +33,14 @@ function ShowSuppliers(props) {
       <Card>
         <Card.Header>
           <h2 className="d-flex justify-content-center">Lista de proveedores</h2>
-          <h4>Elige el proveedor que deseas calcular</h4>
+          
         </Card.Header>
         <Card.Body>
           {bbdd.length === 0 ? (
               <h4 className="d-flex align-items-center justify-content-center text-danger">No hay proveedores guardados</h4>
           ): (
+          <div>
+            <h4 className="d-flex align-items-center justify-content-center mb-3">Elige el proveedor que deseas calcular</h4>
             <Table striped responsive bordered hover>
               <thead>
                 <tr>
@@ -71,8 +72,8 @@ function ShowSuppliers(props) {
                   ) 
                 })}
               </tbody>
-              
             </Table>
+          </div>
           )}
             <div className="d-flex justify-content-center p-4">
               <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Lo tengo!!</button>

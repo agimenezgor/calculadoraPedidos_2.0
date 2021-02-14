@@ -1,15 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
+import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
+import fetchData from '../references/fetchData';
 
-function ShowReference(props) {
-    return (
-      <div>
-        this is the ShowReference page. Supplier: {props.supplier}
-
-        <div className="d-flex justify-content-center p-4">
-            <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Comprobado!!</button>
+function ShowReferences(props) {
+  const [bbdd, setBbdd] = useState([]); 
+  useEffect(() => {
+    const bbdd_aux = async () => {
+      const data = await fetchData(props.supplier);
+      setBbdd(data);
+    }
+    bbdd_aux()
+  }, [props.supplier]);
+  return (
+        <div className="pt-5 pb-5 container text-info">
+          <Card>
+            <Card.Header className="d-flex justify-content-center">
+              <h2><strong>Comprueba que las ventas y el facing sean correctos</strong></h2>
+            </Card.Header>
+            <Card.Body>
+              <h4>Pulsa sobre la referencia para modificarla</h4>
+              {bbdd.length === 0 ? (
+                  <h4 className="d-flex align-items-center justify-content-center text-danger">No hay referencias guardadas</h4>
+              ): (
+              <div>
+                <Table striped responsive bordered hover>
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Número</th>
+                      <th>Condicionante</th>
+                      <th>Facing máximo</th>
+                      <th>Ventas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bbdd.map(function(obj, index) {
+                      return(
+                        <tr key={index} id={index}>
+                            <td>{obj.name}</td>
+                            <td>{obj.number}</td>
+                            <td>{obj.conditioning}</td>
+                            <td>{obj.facing}</td>
+                            <td>{obj.sales}</td>
+                          </tr> 
+                      ) 
+                    })}
+                  </tbody>
+                </Table>
+              </div>
+              )}
+              <div className=" d-flex justify-content-center p-4">
+                <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Comprobado!!</button>
+              </div>
+            </Card.Body>
+          </Card>
         </div>
-      </div>
-    );
+      );
   }
   
-  export default ShowReference;
+  export default ShowReferences;
