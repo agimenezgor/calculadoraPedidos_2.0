@@ -7,13 +7,14 @@ import Palets from './palets';
 import Order from './order';
 
 function CalculateOrder() {
-    const cookies = new Cookies();
-    let userInitialized = false;
+  const cookies = new Cookies();
+  let userInitialized = false;
 
-    if(cookies.get('name') !== undefined){
-      userInitialized = true;
-    }
-    const [showed, setShowed] = useState(0);
+  if(cookies.get('name') !== undefined){
+    userInitialized = true;
+  }
+  const [showed, setShowed] = useState(0);
+  const [supplier, setSupplier] = useState("");
   function Show () {
     if(showed > 4) {
       setShowed(0);
@@ -21,11 +22,11 @@ function CalculateOrder() {
       switch(showed){
         case 1:
           return(
-            <ShowSuppliers showed={showed} setShowed={setShowed}/>
+            <ShowSuppliers setSupplier={setSupplier} showed={showed} setShowed={setShowed}/>
           )
         case 2:
           return(
-            <ShowReferences showed={showed} setShowed={setShowed}/>
+            <ShowReferences supplier={supplier} showed={showed} setShowed={setShowed}/>
           )
         case 3:
           return(
