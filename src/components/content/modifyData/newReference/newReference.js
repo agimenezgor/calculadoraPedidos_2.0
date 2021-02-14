@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import { useForm } from "react-hook-form";
 import PrintValidatedMessage from "./printValidateMessage";
-/* import ValidateData from "./validateData"; */
+import ValidateData from "./validateData";
 import { Redirect, useParams } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
-function NewReference(props) {
+function NewReference() {
   const supplier = useParams().number.substring(1);
   const { register, handleSubmit, errors } = useForm();
   const [validatedMessage, setValidatedMessage] = useState("");
   const [initialized, setInitialized] = useState(false);
 
   async function onSubmit (data, e) {
-    /* await ValidateData(setValidatedMessage, data, e, setInitialized); */
+    await ValidateData(setValidatedMessage, data, e, setInitialized, supplier);
   }
   
   const cookies = new Cookies();
