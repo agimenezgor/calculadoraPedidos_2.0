@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
+import CoverPage from './coverPage';
+import ShowSuppliers from './showSuppliers';
+import ShowReferences from './showreference';
+import Palets from './palets';
+import Order from './order';
 
 function CalculateOrder() {
     const cookies = new Cookies();
@@ -8,11 +13,39 @@ function CalculateOrder() {
     if(cookies.get('name') !== undefined){
       userInitialized = true;
     }
+    const [showed, setShowed] = useState(0);
+  function Show () {
+    if(showed > 4) {
+      setShowed(0);
+    }
+      switch(showed){
+        case 1:
+          return(
+            <ShowSuppliers showed={showed} setShowed={setShowed}/>
+          )
+        case 2:
+          return(
+            <ShowReferences showed={showed} setShowed={setShowed}/>
+          )
+        case 3:
+          return(
+            <Palets showed={showed} setShowed={setShowed}/>
+          )
+        case 4:
+          return(
+            <Order showed={showed} setShowed={setShowed}/>
+          )
+        default:
+          return(
+            <CoverPage showed={showed} setShowed={setShowed}/>
+          )
+      }
+    }
     return (
       <div>
         {userInitialized === true ? (
-          <h3>nombre de usuario: {cookies.get('name')}</h3>
-        ): (<span>This is the calculate order page</span>)}
+          <Show/>
+        ): (<span>Saltar alerta de inicio de sesión</span>)}
         
       </div>
     );
