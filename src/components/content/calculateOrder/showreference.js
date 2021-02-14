@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import fetchData from '../references/fetchData';
 import { useForm } from "react-hook-form";
+import FetchModifyReference from './fetchModifyReference';
 
 function ShowReferences(props) {
   const { register, handleSubmit} = useForm();
@@ -33,8 +34,8 @@ function ShowReferences(props) {
     }
   }
   async function onSubmit (data, e) {
-    //llamada a la api para modificar
-    console.log(data);
+    const reference = await FetchModifyReference(data, e, modifyReference, props.supplier);
+    console.log(reference)
   }
   return (
         <div className="pt-5 pb-5 container text-info">
