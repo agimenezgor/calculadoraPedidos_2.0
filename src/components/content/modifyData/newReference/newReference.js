@@ -20,7 +20,7 @@ function NewReference(props) {
   if(cookies.get('name') === undefined){
     
     setTimeout(() => {
-      alert("Inicia sesión para guardar un nuevo proveedor");
+      alert("Inicia sesión para guardar una nueva referencia");
       window.location.href="http://localhost:3000/inicio_sesion";
     }, 1000);
   }
