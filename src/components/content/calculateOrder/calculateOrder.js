@@ -15,6 +15,7 @@ function CalculateOrder() {
   }
   const [showed, setShowed] = useState(0);
   const [supplier, setSupplier] = useState("");
+  const [palets, setPalets] = useState([]);
   function Show () {
     if(showed > 4) {
       setShowed(0);
@@ -30,11 +31,11 @@ function CalculateOrder() {
           )
         case 3:
           return(
-            <Palets supplier={supplier} showed={showed} setShowed={setShowed}/>
+            <Palets setPalets={setPalets} supplier={supplier} showed={showed} setShowed={setShowed}/>
           )
         case 4:
           return(
-            <Order showed={showed} setShowed={setShowed}/>
+            <Order palets={palets} showed={showed} setShowed={setShowed}/>
           )
         default:
           return(

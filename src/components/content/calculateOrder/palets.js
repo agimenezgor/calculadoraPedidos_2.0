@@ -24,7 +24,7 @@ function Palets(props) {
 
   function finish(){
     if(palets.length === bbdd.length && !palets.includes("")){
-      // setReferences (para poder calcular el pedido en order.js)
+      props.setPalets(palets);
       props.setShowed(props.showed + 1);
     }
     else{

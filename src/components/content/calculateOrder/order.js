@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Order(props) {
+    console.log(props.palets)
     return (
       <div>
         this is the order page
