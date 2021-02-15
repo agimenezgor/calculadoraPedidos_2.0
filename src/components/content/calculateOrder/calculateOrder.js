@@ -36,7 +36,7 @@ function CalculateOrder() {
           )
         case 4:
           return(
-            <Order references={references} palets={palets} showed={showed} setShowed={setShowed}/>
+            <Order supplier={supplier} references={references} palets={palets} showed={showed} setShowed={setShowed}/>
           )
         default:
           return(
