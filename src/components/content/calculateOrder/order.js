@@ -11,7 +11,7 @@ function Order(props) {
             </Card.Header>
             <Card.Body>
               <div className="d-flex justify-content-around">
-                <h4>Proveedor: nombre</h4>
+                <h4>Proveedor: {props.supplierName}</h4>
                 <h4>Número: {props.supplier}</h4>
               </div>
             <Table striped responsive bordered hover>

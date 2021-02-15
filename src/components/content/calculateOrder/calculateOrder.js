@@ -14,6 +14,7 @@ function CalculateOrder() {
     userInitialized = true;
   }
   const [showed, setShowed] = useState(0);
+  const [supplierName, setSupplierName] = useState("nombre de prueba");
   const [supplier, setSupplier] = useState("");
   const [references, setReferences] = useState([]);
   const [palets, setPalets] = useState([]);
@@ -36,7 +37,7 @@ function CalculateOrder() {
           )
         case 4:
           return(
-            <Order supplier={supplier} references={references} palets={palets} showed={showed} setShowed={setShowed}/>
+            <Order supplierName={supplierName} supplier={supplier} references={references} palets={palets} showed={showed} setShowed={setShowed}/>
           )
         default:
           return(
