@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import fetchData from '../references/fetchData';
 import Alert from 'react-bootstrap/Alert'
 
 function Palets(props) {
-  const [bbdd, setBbdd] = useState([]);
   const [palets, setPalets] = useState([]);
   const [missingReferences, setMissingReferences] = useState(false);
-  useEffect(() => {
-    const bbdd_aux = async () => {
-      const data = await fetchData(props.supplier);
-      setBbdd(data);
-    }
-    bbdd_aux()
-  }, [props.supplier]);
 
   async function handleChange (e) {
     let paletsArray = palets;
@@ -23,7 +14,7 @@ function Palets(props) {
   }
 
   function finish(){
-    if(palets.length === bbdd.length && !palets.includes("")){
+    if(palets.length === props.references.length && !palets.includes("")){
       props.setPalets(palets);
       props.setShowed(props.showed + 1);
     }
@@ -45,7 +36,7 @@ function Palets(props) {
                     <th>Palets</th>
                   </thead>
                   <tbody>
-                    {bbdd.map(function(obj, index) {
+                    {props.references.map(function(obj, index) {
                       return(
                         <tr key={index} id={index} className={obj.bg}>
                           <td>{obj.name}</td>

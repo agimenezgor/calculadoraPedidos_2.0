@@ -124,7 +124,11 @@ function ShowReferences(props) {
               ):(<span></span>)}
               {validateMessage !== "" ? showAlert() :(<span></span>)}
               <div className=" d-flex justify-content-center p-4">
-                <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Comprobado!!</button>
+                <button className="btn btn-outline-secondary" onClick={() => {
+                  props.setReferences(bbdd)
+                  props.setShowed(props.showed + 1)}}>
+                    Comprobado!!
+                </button>
               </div>
             </Card.Body>
           </Card>

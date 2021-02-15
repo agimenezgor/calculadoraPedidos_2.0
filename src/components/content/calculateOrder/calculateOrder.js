@@ -15,6 +15,7 @@ function CalculateOrder() {
   }
   const [showed, setShowed] = useState(0);
   const [supplier, setSupplier] = useState("");
+  const [references, setReferences] = useState([]);
   const [palets, setPalets] = useState([]);
   function Show () {
     if(showed > 4) {
@@ -27,15 +28,15 @@ function CalculateOrder() {
           )
         case 2:
           return(
-            <ShowReferences supplier={supplier} showed={showed} setShowed={setShowed}/>
+            <ShowReferences setReferences={setReferences} supplier={supplier} showed={showed} setShowed={setShowed}/>
           )
         case 3:
           return(
-            <Palets setPalets={setPalets} supplier={supplier} showed={showed} setShowed={setShowed}/>
+            <Palets references={references} setPalets={setPalets} supplier={supplier} showed={showed} setShowed={setShowed}/>
           )
         case 4:
           return(
-            <Order palets={palets} showed={showed} setShowed={setShowed}/>
+            <Order references={references} palets={palets} showed={showed} setShowed={setShowed}/>
           )
         default:
           return(
@@ -46,7 +47,7 @@ function CalculateOrder() {
     return (
       <div>
         {userInitialized === true ? (
-          <Show/>
+          Show()
         ): (<span>Saltar alerta de inicio de sesión</span>)}
         
       </div>
