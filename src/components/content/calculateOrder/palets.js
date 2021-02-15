@@ -5,13 +5,30 @@ import fetchData from '../references/fetchData';
 
 function Palets(props) {
   const [bbdd, setBbdd] = useState([]);
+  const [palets, setPalets] = useState([]);
   useEffect(() => {
     const bbdd_aux = async () => {
       const data = await fetchData(props.supplier);
       setBbdd(data);
     }
     bbdd_aux()
-  }, [props.supplier]);  
+  }, [props.supplier]);
+
+  async function handleChange (e) {
+    let paletsArray = palets;
+    paletsArray[e.target.id] = e.target.value;
+    setPalets(paletsArray)
+  }
+
+  function finish(){
+    if(palets.length === bbdd.length && !palets.includes("")){
+      // setReferences (para poder calcular el pedido en order.js)
+      props.setShowed(props.showed + 1);
+    }
+    else{
+      console.log("faltan referencias")
+    }
+  }
   return (
         <div className="pt-5 pb-5 container text-info">
           <Card>
@@ -19,29 +36,27 @@ function Palets(props) {
               <h2><strong>Introduce la cantidad de palets que tienes en stock</strong></h2>
             </Card.Header>
             <Card.Body>
-            <Table striped responsive bordered hover>
-                <thead>
-                  <th>Nombre</th>
-                  <th>Número</th>
-                  <th>Palets</th>
-                </thead>
-                <tbody>
-                  {bbdd.map(function(obj, index) {
-                    return(
-                      <tr key={index} id={index} className={obj.bg}>
-                        <td>{obj.name}</td>
-                        <td>{obj.number}</td>
-                        <td>
-                          <input id={index} type="number"></input>
-                        </td>
-                      </tr>
-                    ) 
-                  })}
-                </tbody>
-              </Table>
-              <div className="d-flex justify-content-center p-4">
-                  <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Hecho!!</button>
-              </div>
+              <Table striped responsive bordered hover>
+                  <thead>
+                    <th style={{minWidth:"15vw"}}>Nombre</th>
+                    <th style={{minWidth:"10vw"}}>Número</th>
+                    <th>Palets</th>
+                  </thead>
+                  <tbody>
+                    {bbdd.map(function(obj, index) {
+                      return(
+                        <tr key={index} id={index} className={obj.bg}>
+                          <td>{obj.name}</td>
+                          <td>{obj.number}</td>
+                          <td><input id={index} onChange={handleChange} required name="stock" className="form-control" type="number"/></td>
+                        </tr>
+                      ) 
+                    })}
+                  </tbody>
+                </Table>
+                <div className="d-flex justify-content-center p-4">
+                  <button onClick={finish} className="btn btn-outline-secondary">Hecho!!</button>
+                </div>
             </Card.Body>
           </Card>
         </div>
