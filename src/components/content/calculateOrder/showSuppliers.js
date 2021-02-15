@@ -25,6 +25,7 @@ function ShowSuppliers(props) {
               // Cambiamos el background
               event.currentTarget.className = "bg-success text-white";
               // guardamos el número de proveedor
+              props.setSupplierName(event.currentTarget.children[0].innerText);
               props.setSupplier(parseInt(event.currentTarget.children[1].innerText));
           }
       }

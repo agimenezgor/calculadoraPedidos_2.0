@@ -14,7 +14,7 @@ function CalculateOrder() {
     userInitialized = true;
   }
   const [showed, setShowed] = useState(0);
-  const [supplierName, setSupplierName] = useState("nombre de prueba");
+  const [supplierName, setSupplierName] = useState("");
   const [supplier, setSupplier] = useState("");
   const [references, setReferences] = useState([]);
   const [palets, setPalets] = useState([]);
@@ -25,7 +25,7 @@ function CalculateOrder() {
       switch(showed){
         case 1:
           return(
-            <ShowSuppliers supplier={supplier} setSupplier={setSupplier} showed={showed} setShowed={setShowed}/>
+            <ShowSuppliers setSupplierName={setSupplierName} supplier={supplier} setSupplier={setSupplier} showed={showed} setShowed={setShowed}/>
           )
         case 2:
           return(
