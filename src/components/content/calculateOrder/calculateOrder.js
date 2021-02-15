@@ -30,7 +30,7 @@ function CalculateOrder() {
           )
         case 3:
           return(
-            <Palets showed={showed} setShowed={setShowed}/>
+            <Palets supplier={supplier} showed={showed} setShowed={setShowed}/>
           )
         case 4:
           return(

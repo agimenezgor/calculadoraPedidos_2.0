@@ -1,15 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
+import fetchData from '../references/fetchData';
 
 function Palets(props) {
-    return (
-      <div>
-        this is the palets page
-
-        <div className="d-flex justify-content-center p-4">
-            <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Hecho!!</button>
+  const [bbdd, setBbdd] = useState([]);
+  useEffect(() => {
+    const bbdd_aux = async () => {
+      const data = await fetchData(props.supplier);
+      setBbdd(data);
+    }
+    bbdd_aux()
+  }, [props.supplier]);  
+  return (
+        <div className="pt-5 pb-5 container text-info">
+          <Card>
+            <Card.Header className="d-flex justify-content-center">
+              <h2><strong>Introduce la cantidad de palets que tienes en stock</strong></h2>
+            </Card.Header>
+            <Card.Body>
+            <Table striped responsive bordered hover>
+                <thead>
+                  <th>Nombre</th>
+                  <th>Número</th>
+                  <th>Palets</th>
+                </thead>
+                <tbody>
+                  {bbdd.map(function(obj, index) {
+                    return(
+                      <tr key={index} id={index} className={obj.bg}>
+                        <td>{obj.name}</td>
+                        <td>{obj.number}</td>
+                        <td>
+                          <input id={index} type="number"></input>
+                        </td>
+                      </tr>
+                    ) 
+                  })}
+                </tbody>
+              </Table>
+              <div className="d-flex justify-content-center p-4">
+                  <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Hecho!!</button>
+              </div>
+            </Card.Body>
+          </Card>
         </div>
-      </div>
-    );
+      );
   }
   
   export default Palets;
