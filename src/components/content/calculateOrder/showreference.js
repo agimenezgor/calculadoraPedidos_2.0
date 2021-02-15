@@ -4,11 +4,13 @@ import Table from 'react-bootstrap/Table';
 import fetchData from '../references/fetchData';
 import { useForm } from "react-hook-form";
 import FetchModifyReference from './fetchModifyReference';
+import swal from 'sweetalert';
 
 function ShowReferences(props) {
   const { register, handleSubmit} = useForm();
   const [bbdd, setBbdd] = useState([]); 
   const [modifyReference, setModifyReference] = useState("");
+  const [validateMessage, setValidatedMessage] = useState("");
   const [showInputs, setShowInputs] = useState(false); 
   useEffect(() => {
     const bbdd_aux = async () => {
@@ -34,9 +36,37 @@ function ShowReferences(props) {
     }
   }
   async function onSubmit (data, e) {
-    const reference = await FetchModifyReference(data, e, modifyReference, props.supplier);
-    console.log(reference)
+    await FetchModifyReference(setValidatedMessage, data, e, modifyReference, props.supplier);
   }
+  
+  function showAlert(){
+    if(validateMessage === "Referencia actualizada correctamente"){
+      swal({
+        title: "Modificada",
+        text: "Referencia modificada correctamente",
+        icon: "success",
+        button: {
+            text: "Aceptar",
+        }
+        })
+        .then(async () => {
+          const data = await fetchData(props.supplier);
+          setValidatedMessage("")
+          setBbdd(data);
+          })
+    }
+    else{
+      swal({
+        title: "Error",
+        text: "No podemos modificar la referencia. Inténtalo más tarde",
+        icon: "error",
+        button: "Aceptar",
+        timer: 1500
+      })
+      .then(setValidatedMessage(""))        
+    }
+  }
+
   return (
         <div className="pt-5 pb-5 container text-info">
           <Card>
@@ -92,6 +122,7 @@ function ShowReferences(props) {
               </div>
               </form>
               ):(<span></span>)}
+              {validateMessage !== "" ? showAlert() :(<span></span>)}
               <div className=" d-flex justify-content-center p-4">
                 <button onClick={() => props.setShowed(props.showed + 1)} className="btn btn-outline-secondary">Comprobado!!</button>
               </div>
