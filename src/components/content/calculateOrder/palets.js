@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import fetchData from '../references/fetchData';
+import Alert from 'react-bootstrap/Alert'
 
 function Palets(props) {
   const [bbdd, setBbdd] = useState([]);
   const [palets, setPalets] = useState([]);
+  const [missingReferences, setMissingReferences] = useState(false);
   useEffect(() => {
     const bbdd_aux = async () => {
       const data = await fetchData(props.supplier);
@@ -26,7 +28,7 @@ function Palets(props) {
       props.setShowed(props.showed + 1);
     }
     else{
-      console.log("faltan referencias")
+      setMissingReferences(true)
     }
   }
   return (
@@ -57,6 +59,11 @@ function Palets(props) {
                 <div className="d-flex justify-content-center p-4">
                   <button onClick={finish} className="btn btn-outline-secondary">Hecho!!</button>
                 </div>
+                {missingReferences === true ? (
+                  <Alert variant="warning" className="d-flex justify-content-center">
+                    Debes de rellenar los datos de todas las referencias antes de continuar!!
+                  </Alert>
+                ): (<span></span>)}
             </Card.Body>
           </Card>
         </div>
