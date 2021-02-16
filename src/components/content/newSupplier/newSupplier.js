@@ -5,6 +5,7 @@ import PrintValidatedMessage from "./printValidateMessage";
 import ValidateData from "./validateData";
 import { Redirect } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import swal from 'sweetalert';
 
 function NewSupplier(props) {
 
@@ -25,8 +26,18 @@ function NewSupplier(props) {
   if(cookies.get('name') === undefined){
     
     setTimeout(() => {
-      alert("Inicia sesión para guardar un nuevo proveedor");
-      window.location.href="http://localhost:3000/inicio_sesion";
+      swal({
+        title: "Inicia sesión",
+        text: "Recuerda! Debes iniciar sesión para empezar",
+        icon: "warning",
+        button: {
+            text: "Aceptar",
+        }
+        })
+      .then(response => 
+      {if(response){
+        window.location.href="http://localhost:3000/inicio_sesion"}
+      })
     }, 1000);
   }
 

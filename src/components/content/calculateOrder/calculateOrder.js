@@ -50,7 +50,7 @@ function CalculateOrder() {
     function ShowAlert() {
       swal({
         title: "Inicia sesión",
-        text: "Recuerda! debes iniciar sesión para empezar",
+        text: "Recuerda! Debes iniciar sesión para empezar",
         icon: "warning",
         button: {
             text: "Aceptar",
