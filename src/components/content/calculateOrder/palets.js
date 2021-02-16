@@ -42,9 +42,11 @@ function Palets(props) {
             <Card.Body>
               <Table striped responsive bordered hover>
                   <thead>
-                    <th style={{minWidth:"15vw"}}>Nombre</th>
-                    <th style={{minWidth:"10vw"}}>Número</th>
-                    <th>Palets</th>
+                    <tr>
+                      <th style={{minWidth:"15vw"}}>Nombre</th>
+                      <th style={{minWidth:"10vw"}}>Número</th>
+                      <th>Palets</th>
+                    </tr>
                   </thead>
                   <tbody>
                     {props.references.map(function(obj, index) {
