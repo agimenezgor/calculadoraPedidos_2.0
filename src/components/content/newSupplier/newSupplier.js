@@ -13,6 +13,7 @@ function NewSupplier(props) {
   const [calculateType, setCalculateType] = useState(""); 
   const [validatedMessage, setValidatedMessage] = useState("");
   const [initialized, setInitialized] = useState(false);
+  const [supplierNumber, setSupplierNumber] = useState("");
 
   function selected(e) {
     setCalculateType(e.target.value)
@@ -20,6 +21,7 @@ function NewSupplier(props) {
 
   async function onSubmit (data, e) {
     await ValidateData(setValidatedMessage, data, e, setInitialized);
+    setSupplierNumber(data.number);
   }
   
   const cookies = new Cookies();
@@ -268,7 +270,7 @@ function NewSupplier(props) {
               </div>
             </form>
             {initialized === true ? (
-              <Redirect to="/nueva_referencia"/>
+              <Redirect to={"/nueva_referencia/:"+ supplierNumber}/>
             ): (<span></span>)}
           </Card.Body>
           <PrintValidatedMessage message={validatedMessage}/>
