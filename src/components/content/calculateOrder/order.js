@@ -25,10 +25,12 @@ function Order(props) {
               </div>
             <Table striped responsive bordered hover>
                 <thead>
-                  <th>Nombre</th>
-                  <th>Número</th>
-                  <th>Palets a pedir</th>
-                  <th>Cantidad a pedir</th>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Número</th>
+                    <th>Palets a pedir</th>
+                    <th>Cantidad a pedir</th>
+                  </tr>
                 </thead>
                 <tbody>
                   {order.map(function(obj, index) {
