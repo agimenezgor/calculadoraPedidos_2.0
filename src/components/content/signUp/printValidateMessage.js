@@ -12,8 +12,8 @@ function PrintValidatedMessage(message){
                 text: "Aceptar",
             }
             })
-        }
-        function warningEmail() {
+    }
+    function warningEmail() {
         swal({
             title: "Atención!",
             text: "Introduzca un email válido",
@@ -22,8 +22,8 @@ function PrintValidatedMessage(message){
                 text: "Aceptar",
             }
             })
-        }
-        function warningUser() {
+    }
+    function warningUser() {
         swal({
             title: "Atención!",
             text: "La contraseña debe contener al menos 8 caracteres",
@@ -32,8 +32,7 @@ function PrintValidatedMessage(message){
                 text: "Aceptar",
             }
             })
-        }
-        console.log(validatedMessage)
+    }
         return <div>
             {validatedMessage === "" ? (
                 <span></span>)

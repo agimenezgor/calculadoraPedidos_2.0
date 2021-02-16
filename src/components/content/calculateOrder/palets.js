@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import Alert from 'react-bootstrap/Alert'
+import swal from 'sweetalert';
 
 function Palets(props) {
   const [palets, setPalets] = useState([]);
@@ -14,13 +14,24 @@ function Palets(props) {
   }
 
   function finish(){
-    if(palets.length === props.references.length && !palets.includes("")){
+    if(palets.length === props.references.length && !palets.includes("") && !palets.includes(undefined)){
       props.setPalets(palets);
       props.setShowed(props.showed + 1);
     }
     else{
       setMissingReferences(true)
     }
+  }
+  function paletsAlert(params) {
+    swal({
+      title: "Atención!",
+      text: "Debes de rellenar los datos de todas las referencias antes de continuar!!",
+      icon: "warning",
+      button: {
+          text: "Aceptar",
+      }
+      })
+      .then(() => setMissingReferences(false))
   }
   return (
         <div className="pt-5 pb-5 container text-info">
@@ -51,9 +62,7 @@ function Palets(props) {
                   <button onClick={finish} className="btn btn-outline-secondary">Hecho!!</button>
                 </div>
                 {missingReferences === true ? (
-                  <Alert variant="warning" className="d-flex justify-content-center">
-                    Debes de rellenar los datos de todas las referencias antes de continuar!!
-                  </Alert>
+                  paletsAlert()
                 ): (<span></span>)}
             </Card.Body>
           </Card>
