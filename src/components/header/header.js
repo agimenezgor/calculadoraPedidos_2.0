@@ -2,7 +2,6 @@ import React from 'react';
 import SignUp from './signUp/signUp';
 import SignIn from './signIn/signIn';
 import PageTitle from './pageTitle/pageTitle';
-import ModifyData from './modifyData/modifyData';
 import CalculateOrder from './calculateOrder/calculateOrder';
 import NewSupplier from './newSupplier/newSupplier';
 import Suppliers from './suppliers/suppliers';
@@ -28,7 +27,6 @@ function Header(props) {
             <div className="col-md-5 d-flex justify-content-between">
               <Link to="/calculadora"><CalculateOrder/></Link>
               <Link to="/nuevo_proveedor"><NewSupplier/></Link>
-              <div><ModifyData/></div>
               <Link to="/proveedores"><Suppliers/></Link>
             </div>
 
