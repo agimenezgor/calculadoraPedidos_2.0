@@ -5,6 +5,7 @@ import sample_BBDD from '../../bbdd_suppliers.json';
 import { Redirect } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import fetchData from './suppliers/fetchData';
+import swal from 'sweetalert';
 
 function PrintSuppliers() {
     const cookies = new Cookies();
@@ -49,16 +50,25 @@ function PrintSuppliers() {
             }
         }
     }
+    function ShowAlert() {
+      setTimeout(() => {
+        swal({
+          title: "Inicia sesión",
+          text: "Recuerda! Debes iniciar sesión para empezar",
+          icon: "warning",
+          button: {
+              text: "Aceptar",
+          }
+          })
+      }, 1500);
+    }
     return (
       <div className="ml-5 mr-5 pt-4 pb-5 text-info">
         <Card>
           <Card.Header>
             <h2 className="d-flex justify-content-center">Lista de proveedores</h2>
             {userInitialized !== true ? (
-            <div className="d-flex justify-content-around">
-              <h4 className="text-danger">Esta es una tabla de proveedores de muestra!!</h4>
-              <h4 className="text-success">Para ver tus proveedores inicia sesión</h4>
-              </div>
+            ShowAlert()
             ):(<span></span>)} 
           </Card.Header>
           <Card.Body>

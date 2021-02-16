@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import { Redirect } from "react-router-dom";
 import FetchData from './references/fetchData';
+import swal from 'sweetalert';
 
 function PrintReferences(props) {
     const cookies = new Cookies();
@@ -50,16 +51,25 @@ function PrintReferences(props) {
             }
         }
     }
+    function ShowAlert() {
+      setTimeout(() => {
+        swal({
+          title: "Inicia sesión",
+          text: "Recuerda! Debes iniciar sesión para empezar",
+          icon: "warning",
+          button: {
+              text: "Aceptar",
+          }
+          })
+      }, 1500);
+    }
     return (
         <div className="ml-5 mr-5 pt-4 pb-5 text-info">
         <Card>
           <Card.Header>
             <h2 className="d-flex justify-content-center">Lista de referencias</h2>
             {userInitialized !== true ? (
-            <div className="d-flex justify-content-around">
-              <h4 className="text-danger">Esta es una tabla de referencias de muestra!!</h4>
-              <h4 className="text-success">Para ver tus referencias inicia sesión</h4>
-              </div>
+            ShowAlert()
             ):(<span></span>)} 
           </Card.Header>
           <Card.Body>
