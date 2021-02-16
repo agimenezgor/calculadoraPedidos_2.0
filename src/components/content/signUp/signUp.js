@@ -22,7 +22,7 @@ function SignUp() {
       </Card.Header>
       <Card.Body>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>Introduce tu email y contraseña para registrarte</h2>
+          <h4>Introduce tu email y contraseña para registrarte</h4>
           
           <label className="d-flex justify-content-center mt-4">Introduce tu nombre usuario</label>
           <div className="d-flex justify-content-center mt-4">

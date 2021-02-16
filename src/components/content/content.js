@@ -21,7 +21,7 @@ function Typed (){
             <a href={pdf} download target="_blank" rel="noreferrer">
               <Typing startDelay={8500}>
                   <h3 className="text-warning d-flex justify-content-center align-items-center">
-                    No sabes como funciona la aplicación? Descárgate el manual de uso pulsando aquí!!
+                    ¿No sabes cómo funciona la aplicación? Descárgate el manual de uso pulsando aquí!!
                   </h3>
               </Typing>  
             </a>
