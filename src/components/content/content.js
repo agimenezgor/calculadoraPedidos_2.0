@@ -1,6 +1,7 @@
 import React from 'react';
 import Video from '../img/video.mp4';
 import Typing from 'react-typing-animation';
+import pdf from '../../pdf.pdf';
 
 function Typed (){
   return(
@@ -15,6 +16,15 @@ function Typed (){
           <h2 className="text-light d-flex justify-content-center align-items-center" style={{minHeight:"30vh" }}>
             <Typing startDelay={3000}><h2>Regístrate y mejora la gestión de tus proveedores de forma sencilla</h2></Typing> 
           </h2>
+        </div>
+        <div>
+            <a href={pdf} download target="_blank" rel="noreferrer">
+              <Typing startDelay={8500}>
+                  <h3 className="text-warning d-flex justify-content-center align-items-center">
+                    No sabes como funciona la aplicación? Descárgate el manual de uso pulsando aquí!!
+                  </h3>
+              </Typing>  
+            </a>
         </div>
     </div>
         
