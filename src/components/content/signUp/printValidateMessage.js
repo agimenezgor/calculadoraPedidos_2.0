@@ -1,16 +1,48 @@
 import React from 'react';
+import swal from 'sweetalert';
 
 function PrintValidatedMessage(message){
     const validatedMessage = message.message;
-    return <div>
+    function successAlert() {
+        swal({
+            title: "Guardado",
+            text: "Usuario creado correctamente",
+            icon: "success",
+            button: {
+                text: "Aceptar",
+            }
+            })
+        }
+        function warningEmail() {
+        swal({
+            title: "Atención!",
+            text: "Introduzca un email válido",
+            icon: "warning",
+            button: {
+                text: "Aceptar",
+            }
+            })
+        }
+        function warningUser() {
+        swal({
+            title: "Atención!",
+            text: "La contraseña debe contener al menos 8 caracteres",
+            icon: "warning",
+            button: {
+                text: "Aceptar",
+            }
+            })
+        }
+        console.log(validatedMessage)
+        return <div>
             {validatedMessage === "" ? (
                 <span></span>)
               : validatedMessage === "Usuario creado correctamente" ? (
-              <div className="bg-success text-white d-flex justify-content-center mt-4 p-4"><h4>{validatedMessage}</h4></div>)
+                    successAlert())
               : validatedMessage === "Introduzca un email válido" ? (
-                  <div className="bg-warning text-white d-flex justify-content-center mt-4 p-4"><h4>{validatedMessage}</h4></div>
+                    warningEmail()
               ): validatedMessage === "La contraseña debe contener al menos 8 caracteres" ?(
-                  <div className="bg-danger text-white d-flex justify-content-center mt-4 p-4"><h4>{validatedMessage}</h4></div>
+                    warningUser()
               ): (<span></span>)}
             </div>
 }
