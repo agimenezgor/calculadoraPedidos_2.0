@@ -5,6 +5,7 @@ import PrintValidatedMessage from "./printValidateMessage";
 import ValidateData from "./validateData";
 import { Redirect, useParams } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import swal from 'sweetalert';
 
 function NewReference() {
   const supplier = useParams().number.substring(1);
@@ -18,11 +19,21 @@ function NewReference() {
   
   const cookies = new Cookies();
   if(cookies.get('name') === undefined){
-    
     setTimeout(() => {
+      swal({
+        title: "Inicia sesión",
+        text: "Recuerda! Debes iniciar sesión para empezar",
+        icon: "warning",
+        button: {
+            text: "Aceptar",
+        }
+        })
+        .then(() => window.location.href="http://localhost:3000/inicio_sesion")
+    }, 1500);
+    /* setTimeout(() => {
       alert("Inicia sesión para guardar una nueva referencia");
       window.location.href="http://localhost:3000/inicio_sesion";
-    }, 1000);
+    }, 1000); */
   }
 
 
