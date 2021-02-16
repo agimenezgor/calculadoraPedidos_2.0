@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import fetchData from '../suppliers/fetchData';
+import swal from 'sweetalert';
 
 function ShowSuppliers(props) {
   const [bbdd, setBbdd] = useState([]); 
@@ -14,6 +15,17 @@ function ShowSuppliers(props) {
     bbdd_aux()
   }, []);
   
+  function supplierAlert(){
+    swal({
+      title: "Atención!",
+      text: "Atención!! Elige un proveedor antes de continuar",
+      icon: "warning",
+      button: {
+          text: "Aceptar",
+      }
+      })
+  }
+
   function supplierSelected(event){
       // Recorremos todos los nodos de la tabla
       for(let i = 0; i < event.currentTarget.offsetParent.children[1].children.length; i++){
@@ -88,9 +100,8 @@ function ShowSuppliers(props) {
               }} className="btn btn-outline-secondary">Lo tengo!!</button>
             </div>
           {showAlert === true ? (
-          <div className="d-flex justify-content-center text-danger">
-            <h4>Atención!! Elige un proveedor antes de continuar</h4>
-          </div>):(<span></span>)}
+          supplierAlert()
+          ):(<span></span>)}
         </Card.Body>
       </Card>
     </div>
