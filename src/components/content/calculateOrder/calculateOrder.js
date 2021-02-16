@@ -48,14 +48,16 @@ function CalculateOrder() {
     }
 
     function ShowAlert() {
-      swal({
-        title: "Inicia sesión",
-        text: "Recuerda! Debes iniciar sesión para empezar",
-        icon: "warning",
-        button: {
-            text: "Aceptar",
-        }
-        })
+      setTimeout(() => {
+        swal({
+          title: "Inicia sesión",
+          text: "Recuerda! Debes iniciar sesión para empezar",
+          icon: "warning",
+          button: {
+              text: "Aceptar",
+          }
+          })
+      }, 1000);
     }
 
     return (
