@@ -5,6 +5,7 @@ import ShowSuppliers from './showSuppliers';
 import ShowReferences from './showreference';
 import Palets from './palets';
 import Order from './order';
+import swal from 'sweetalert';
 
 function CalculateOrder() {
   const cookies = new Cookies();
@@ -45,11 +46,24 @@ function CalculateOrder() {
           )
       }
     }
+
+    function ShowAlert() {
+      swal({
+        title: "Inicia sesión",
+        text: "Recuerda! debes iniciar sesión para empezar",
+        icon: "warning",
+        button: {
+            text: "Aceptar",
+        }
+        })
+    }
+
     return (
       <div>
-        {userInitialized === true ? (
-          Show()
-        ): (<span>Saltar alerta de inicio de sesión</span>)}
+        {Show()}
+        {userInitialized === false ? (
+          ShowAlert()
+        ): (<span></span>)}
         
       </div>
     );
